@@ -4,6 +4,8 @@ Public website for CX Institute SA, served by Cloudflare Workers (worker `cxinst
 
 - `public/` – the site (plain HTML/CSS, no build step). Homepage: 01 Inspire · 02 Experience · 03 Embed.
 - `src/index.js` – the Worker: serves `public/` and handles `POST /api/enquiry`, which emails the enquiry form to `TO_EMAIL` via Resend (Reply-To = the visitor).
+- `public/keynotes/` – the CX Keynotes tab (main page + 4 keynote pages). Generated: edit `tools/keynotes_content.py`, then run `python3 tools/build_keynotes.py`. Menu, footer and enquiry form are copied from `public/index.html`, so rebuild after changing those.
+- `public/downloads/` – keynote PDF/PPT downloads (from the Lynn Baker speaker site).
 - `tests/` – `npm test` checks the enquiry endpoint (validation, escaping, spam traps, failures).
 
 ## Enquiry form settings

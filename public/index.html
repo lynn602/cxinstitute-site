@@ -70,6 +70,7 @@
       <a href="#inspire"><span class="num">01</span>Inspire</a>
       <a href="#experience"><span class="num">02</span>Experience</a>
       <a href="#embed"><span class="num">03</span>Embed</a>
+      <a href="keynotes/">CX Keynotes</a>
       <a href="#about">About</a>
       <a class="btn btn-teal" href="#enquire">Let's talk</a>
     </nav>
@@ -201,6 +202,7 @@
             <p>Introduces customer experience, shows the difference between service and experience, and walks through the five stages of the customer journey.</p>
             <ul class="chips stages"><li>Awareness</li><li>Consideration</li><li>Purchase</li><li>Experience</li><li>Loyalty &amp; Advocacy</li></ul>
             <div class="best-for"><b>Best for</b><span>Leadership conferences · Strategy sessions · Annual kick-offs · Starting the CX journey</span></div>
+            <a class="k-link" href="keynotes/welcome-to-the-age-of-experience/">View the keynote →</a>
           </article>
 
           <article class="keynote">
@@ -210,6 +212,7 @@
             <p>Shows sales teams how to prove their impact on clients' KPIs, profitability and growth – and move from vendor to partner.</p>
             <ul class="chips stages"><li>Reframe</li><li>Realign</li><li>Retain</li></ul>
             <div class="best-for"><b>Best for</b><span>Sales kick-offs · Key account summits · B2B leadership forums · Bid and commercial teams</span></div>
+            <a class="k-link" href="keynotes/b2b-customer-experience-cpx/">View the keynote →</a>
           </article>
 
           <article class="keynote">
@@ -217,6 +220,7 @@
             <p class="k-sub">Human + AI: Leading People and Customers Through the AI Shift</p>
             <p>How leaders can address employee anxiety about AI and combine human judgement with AI capability – so their organisations become both more productive and more human.</p>
             <div class="best-for"><b>Best for</b><span>AI strategy days · Leadership conferences · Digital transformation · Executive offsites</span></div>
+            <a class="k-link" href="keynotes/ai-and-humanization-cx/">View the keynote →</a>
           </article>
 
           <article class="keynote featured">
@@ -226,11 +230,12 @@
             <p>A 30-minute keynote, 60 minutes of The Customer Journey Game – where teams experience friction and silos first-hand and solve them together – and a 30-minute insight session that turns frontline knowledge into improvements.</p>
             <div class="timeline" aria-label="Session structure"><div>Keynote 30 min</div><div>Customer Journey Game 60 min</div><div>Insight 30 min</div></div>
             <div class="best-for"><b>Best for</b><span>Change programmes · Culture and team offsites · Cross-functional leaders · Customer Service Week · Year-end functions · Groups of up to 250</span></div>
+            <a class="k-link" href="keynotes/customer-journey-game/">View the keynote →</a>
           </article>
         </div>
 
         <div class="btn-row">
-          <a class="btn btn-navy" href="https://www.lynnbakerspeaker.com/" target="_blank" rel="noopener">See all keynotes <svg><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-navy" href="keynotes/">Explore the CX Keynotes <svg><use href="#i-arrow"/></svg></a>
           <a class="btn btn-outline" href="#enquire" data-interest="keynote">Book Lynn for your event</a>
         </div>
       </div>
@@ -568,7 +573,7 @@
     <div class="footer-top">
       <img src="assets/img/cxisa-logo-white.png" alt="CXiSA – Customer Experience Institute" width="127" height="52" loading="lazy">
       <nav class="footer-links" aria-label="Footer">
-        <a href="#inspire">Keynotes</a>
+        <a href="keynotes/">CX Keynotes</a>
         <a href="#experience">The Customer Journey Game©</a>
         <a href="#embed">TOUCHPOINTS</a>
         <a href="https://www.lynnbakerspeaker.com/" target="_blank" rel="noopener">lynnbakerspeaker.com</a>
@@ -581,93 +586,6 @@
     </div>
   </div>
 </footer>
-
-<script>
-  (function () {
-    var t = document.querySelector('.nav-toggle'), n = document.getElementById('nav');
-    t.addEventListener('click', function () {
-      var o = n.classList.toggle('open');
-      t.setAttribute('aria-expanded', o ? 'true' : 'false');
-    });
-    n.addEventListener('click', function (e) {
-      if (e.target.closest('a')) { n.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); }
-    });
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  })();
-
-  (function () {
-    var form = document.getElementById('enquire-form');
-    if (!form) return;
-    var started = Date.now();
-    var status = form.querySelector('.form-status');
-    var btn = form.querySelector('button[type=submit]');
-    var fallback = 'Please email <a href="mailto:lynn@cx-company.com">lynn@cx-company.com</a> or call +27 82 457 5752.';
-
-    function pick(v) {
-      var r = form.querySelector('input[name=interest][value="' + v + '"]');
-      if (r) r.checked = true;
-    }
-    document.querySelectorAll('a[data-interest]').forEach(function (a) {
-      a.addEventListener('click', function () { pick(a.getAttribute('data-interest')); });
-    });
-
-    function show(kind, html) {
-      status.className = 'form-status ' + kind;
-      status.innerHTML = html;
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      form.querySelectorAll('.invalid').forEach(function (el) { el.classList.remove('invalid'); });
-      var fd = new FormData(form);
-      var data = {};
-      fd.forEach(function (v, k) { data[k] = String(v).trim(); });
-      data.elapsed = Date.now() - started;
-
-      var bad = [];
-      if (!data.interest) bad.push('interest');
-      if ((data.name || '').length < 2) bad.push('name');
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email || '')) bad.push('email');
-      if ((data.company || '').length < 2) bad.push('company');
-      if ((data.message || '').length < 10) bad.push('message');
-      if (bad.length) { mark(bad); return; }
-
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      show('', '');
-      fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function (r) {
-        return r.json().catch(function () { return { ok: false }; }).then(function (j) { return { status: r.status, body: j }; });
-      }).then(function (res) {
-        if (res.body && res.body.ok) {
-          form.reset();
-          show('ok', '<b>Thank you – your enquiry has been sent.</b> Lynn will be in touch shortly.');
-        } else if (res.body && res.body.error === 'invalid') {
-          mark(res.body.fields || []);
-        } else {
-          show('err', '<b>Sorry, your enquiry could not be sent just now.</b> ' + fallback);
-        }
-      }).catch(function () {
-        show('err', '<b>Sorry, your enquiry could not be sent just now.</b> ' + fallback);
-      }).then(function () {
-        btn.disabled = false;
-        btn.textContent = 'Send enquiry';
-      });
-    });
-
-    function mark(fields) {
-      fields.forEach(function (n) {
-        var el = n === 'interest' ? form.querySelector('.interest') : form.querySelector('[name=' + n + ']');
-        if (el) (n === 'interest' ? el : el.closest('.field')).classList.add('invalid');
-      });
-      show('err', 'Please complete the highlighted fields.');
-      var first = form.querySelector('.invalid input, .invalid textarea, .interest.invalid input');
-      if (first) first.focus();
-    }
-  })();
-</script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
