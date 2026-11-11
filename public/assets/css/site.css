@@ -137,7 +137,7 @@ p { margin: 0 0 1em; }
   font-family: "Montserrat", sans-serif; letter-spacing: 0.32em; text-transform: uppercase;
   font-size: 0.78rem; color: var(--teal-light); margin-top: 26px;
 }
-.hero-logo { justify-self: end; width: min(420px, 100%); opacity: .98; }
+.hero-logo { justify-self: end; width: min(360px, 100%); height: auto; opacity: .98; }
 .hero-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
 .hero-tile { position: relative; aspect-ratio: 16 / 10; overflow: hidden; text-decoration: none; display: block; }
 .hero-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
