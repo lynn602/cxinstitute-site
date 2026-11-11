@@ -608,4 +608,4 @@ p { margin: 0 0 1em; }
 /* Game intro win lines */
 .win-line { font-family: "Montserrat", sans-serif; font-size: 1.2rem; font-weight: 500; color: var(--navy); margin: -4px 0 6px; }
 .win-line b { color: var(--game); font-weight: 700; letter-spacing: .04em; }
-.win-kicker { display: inline-block; font-family: "Montserrat", sans-serif; font-size: .82rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--white); background: var(--game); padding: 7px 16px; border-radius: 999px; margin: 4px 0 22px; }
+.win-kicker { display: inline-block; font-family: "Montserrat", sans-serif; font-size: .82rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--white); background: #157c9a; padding: 7px 16px; border-radius: 999px; margin: 4px 0 22px; }
