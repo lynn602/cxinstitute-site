@@ -71,7 +71,7 @@
       <a href="#experience"><span class="num">02</span>Experience</a>
       <a href="#embed"><span class="num">03</span>Embed</a>
       <a href="#about">About</a>
-      <a class="btn btn-teal" href="#contact">Let's talk</a>
+      <a class="btn btn-teal" href="#enquire">Let's talk</a>
     </nav>
   </div>
 </header>
@@ -231,7 +231,7 @@
 
         <div class="btn-row">
           <a class="btn btn-navy" href="https://www.lynnbakerspeaker.com/" target="_blank" rel="noopener">See all keynotes <svg><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-outline" href="mailto:lynn@cx-company.com?subject=Keynote%20enquiry">Book Lynn for your event</a>
+          <a class="btn btn-outline" href="#enquire" data-interest="keynote">Book Lynn for your event</a>
         </div>
       </div>
     </div>
@@ -343,7 +343,7 @@
 
         <div class="btn-row">
           <a class="btn btn-game" href="https://www.customerjourneygame.co.za/" target="_blank" rel="noopener">Explore the editions <svg><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-outline" href="mailto:lynn@cx-company.com?subject=Customer%20Journey%20Game%20enquiry">Book a game session</a>
+          <a class="btn btn-outline" href="#enquire" data-interest="game">Book a game session</a>
         </div>
       </div>
     </div>
@@ -359,7 +359,7 @@
         <p class="tagline">Customer Experience Continuous Improvement Programme – embed lasting change.</p>
         <p>A workforce capability and enablement system – CX Champions, tailored learning and a digital Improvement System that build a customer-centric culture that keeps renewing itself.</p>
         <p class="meta">3-month pilot · 12-month rollout · Improvement System</p>
-        <div class="btn-row"><a class="btn btn-teal" href="#contact">Start a TOUCHPOINTS pilot</a></div>
+        <div class="btn-row"><a class="btn btn-teal" href="#enquire" data-interest="touchpoints">Start a TOUCHPOINTS pilot</a></div>
       </div>
     </div>
 
@@ -491,20 +491,57 @@
           <span class="n">1</span><small>Inspire</small>
           <h3>Book a keynote</h3>
           <p>Open your conference or leadership event with a story-led keynote.</p>
-          <a class="btn btn-ghost" href="mailto:lynn@cx-company.com?subject=Keynote%20enquiry">Enquire</a>
+          <a class="btn btn-ghost" href="#enquire" data-interest="keynote">Enquire</a>
         </div>
         <div class="step">
           <span class="n">2</span><small>Experience</small>
           <h3>Run a game session</h3>
           <p>Bring The Customer Journey Game to your team, event or training.</p>
-          <a class="btn btn-ghost" href="mailto:lynn@cx-company.com?subject=Customer%20Journey%20Game%20enquiry">Enquire</a>
+          <a class="btn btn-ghost" href="#enquire" data-interest="game">Enquire</a>
         </div>
         <div class="step">
           <span class="n">3</span><small>Embed</small>
           <h3>Start a TOUCHPOINTS pilot</h3>
           <p>Begin with a CX Maturity Assessment and develop your CX Champions.</p>
-          <a class="btn btn-ghost" href="mailto:lynn@cx-company.com?subject=TOUCHPOINTS%20pilot%20enquiry">Enquire</a>
+          <a class="btn btn-ghost" href="#enquire" data-interest="touchpoints">Enquire</a>
         </div>
+      </div>
+
+      <div class="enquire" id="enquire">
+        <div class="enquire-intro">
+          <p class="eyebrow">Send an enquiry</p>
+          <h3>Tell us what you have in mind.</h3>
+          <p>Share a few details and Lynn will come back to you personally.</p>
+          <ul class="enquire-direct">
+            <li><svg><use href="#i-mail"/></svg><a href="mailto:lynn@cx-company.com">lynn@cx-company.com</a></li>
+            <li><svg><use href="#i-phone"/></svg><a href="tel:+27824575752">+27 82 457 5752</a> <span>(phone / WhatsApp)</span></li>
+          </ul>
+        </div>
+        <form class="enquire-form" id="enquire-form" novalidate>
+          <fieldset class="interest">
+            <legend>I'm interested in <span aria-hidden="true">*</span></legend>
+            <label><input type="radio" name="interest" value="keynote" required><span><b>01 · Inspire</b>A keynote or workshop</span></label>
+            <label><input type="radio" name="interest" value="game"><span><b>02 · Experience</b>The Customer Journey Game©</span></label>
+            <label><input type="radio" name="interest" value="touchpoints"><span><b>03 · Embed</b>The TOUCHPOINTS programme</span></label>
+            <label><input type="radio" name="interest" value="unsure"><span><b>Not sure yet</b>Advise me</span></label>
+          </fieldset>
+          <div class="field-grid">
+            <label class="field"><span>Name <i aria-hidden="true">*</i></span><input name="name" autocomplete="name" required maxlength="100"></label>
+            <label class="field"><span>Email <i aria-hidden="true">*</i></span><input name="email" type="email" autocomplete="email" required maxlength="254"></label>
+            <label class="field"><span>Company <i aria-hidden="true">*</i></span><input name="company" autocomplete="organization" required maxlength="150"></label>
+            <label class="field"><span>Role</span><input name="role" autocomplete="organization-title" maxlength="100"></label>
+            <label class="field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" maxlength="40"></label>
+            <label class="field"><span>Event date or timing</span><input name="timing" maxlength="120" placeholder="e.g. March 2027, or flexible"></label>
+            <label class="field"><span>Group size</span><input name="audience" maxlength="60" placeholder="e.g. 120 delegates"></label>
+          </div>
+          <label class="field full"><span>How can we help? <i aria-hidden="true">*</i></span><textarea name="message" rows="5" required maxlength="3000" placeholder="Your event, team or goals – whatever helps us prepare."></textarea></label>
+          <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+          <div class="form-foot">
+            <button class="btn btn-teal" type="submit">Send enquiry</button>
+            <p class="privacy">We use your details only to respond to your enquiry.</p>
+          </div>
+          <div class="form-status" role="status" aria-live="polite"></div>
+        </form>
       </div>
 
       <div class="contact-card">
@@ -550,6 +587,80 @@
       if (e.target.closest('a')) { n.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); }
     });
     document.getElementById('yr').textContent = new Date().getFullYear();
+  })();
+
+  (function () {
+    var form = document.getElementById('enquire-form');
+    if (!form) return;
+    var started = Date.now();
+    var status = form.querySelector('.form-status');
+    var btn = form.querySelector('button[type=submit]');
+    var fallback = 'Please email <a href="mailto:lynn@cx-company.com">lynn@cx-company.com</a> or call +27 82 457 5752.';
+
+    function pick(v) {
+      var r = form.querySelector('input[name=interest][value="' + v + '"]');
+      if (r) r.checked = true;
+    }
+    document.querySelectorAll('a[data-interest]').forEach(function (a) {
+      a.addEventListener('click', function () { pick(a.getAttribute('data-interest')); });
+    });
+
+    function show(kind, html) {
+      status.className = 'form-status ' + kind;
+      status.innerHTML = html;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.querySelectorAll('.invalid').forEach(function (el) { el.classList.remove('invalid'); });
+      var fd = new FormData(form);
+      var data = {};
+      fd.forEach(function (v, k) { data[k] = String(v).trim(); });
+      data.elapsed = Date.now() - started;
+
+      var bad = [];
+      if (!data.interest) bad.push('interest');
+      if ((data.name || '').length < 2) bad.push('name');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email || '')) bad.push('email');
+      if ((data.company || '').length < 2) bad.push('company');
+      if ((data.message || '').length < 10) bad.push('message');
+      if (bad.length) { mark(bad); return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      show('', '');
+      fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (r) {
+        return r.json().catch(function () { return { ok: false }; }).then(function (j) { return { status: r.status, body: j }; });
+      }).then(function (res) {
+        if (res.body && res.body.ok) {
+          form.reset();
+          show('ok', '<b>Thank you – your enquiry has been sent.</b> Lynn will be in touch shortly.');
+        } else if (res.body && res.body.error === 'invalid') {
+          mark(res.body.fields || []);
+        } else {
+          show('err', '<b>Sorry, your enquiry could not be sent just now.</b> ' + fallback);
+        }
+      }).catch(function () {
+        show('err', '<b>Sorry, your enquiry could not be sent just now.</b> ' + fallback);
+      }).then(function () {
+        btn.disabled = false;
+        btn.textContent = 'Send enquiry';
+      });
+    });
+
+    function mark(fields) {
+      fields.forEach(function (n) {
+        var el = n === 'interest' ? form.querySelector('.interest') : form.querySelector('[name=' + n + ']');
+        if (el) (n === 'interest' ? el : el.closest('.field')).classList.add('invalid');
+      });
+      show('err', 'Please complete the highlighted fields.');
+      var first = form.querySelector('.invalid input, .invalid textarea, .interest.invalid input');
+      if (first) first.focus();
+    }
   })();
 </script>
 </body>

@@ -1,7 +1,14 @@
 {
   "name": "cxinstitute-site",
+  "main": "src/index.js",
   "compatibility_date": "2026-11-01",
   "assets": {
-    "directory": "./public"
-  }
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "TO_EMAIL": "lynn@cx-company.com"
+  },
+  // RESEND_API_KEY and FROM_EMAIL are secrets set in the Cloudflare dashboard; deploys keep them.
+  "keep_vars": true
 }

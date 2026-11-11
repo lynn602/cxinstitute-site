@@ -394,3 +394,52 @@ p { margin: 0 0 1em; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* Enquiry form */
+.enquire { margin-top: 56px; background: var(--white); color: var(--ink); border-radius: var(--radius); display: grid; grid-template-columns: 0.8fr 1.6fr; overflow: hidden; scroll-margin-top: 90px; }
+.enquire-intro { background: var(--teal-tint); padding: clamp(28px, 4vw, 44px); }
+.section.dark .enquire h3 { color: var(--navy); font-size: 1.5rem; }
+.enquire-intro p { color: var(--muted); }
+.enquire-direct { list-style: none; padding: 0; margin: 24px 0 0; }
+.enquire-direct li { display: flex; align-items: center; gap: 10px; margin: 10px 0; font-size: .95rem; flex-wrap: wrap; }
+.enquire-direct svg { width: 18px; height: 18px; color: var(--teal); }
+.enquire-direct a { color: var(--navy); font-weight: 500; text-decoration: none; }
+.enquire-direct span { color: var(--muted); font-size: .85rem; }
+.enquire-form { padding: clamp(28px, 4vw, 44px); }
+.interest { border: 0; padding: 0; margin: 0 0 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; border-radius: var(--radius-sm); }
+.interest legend { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: .86rem; color: var(--navy); margin-bottom: 10px; padding: 0; }
+.interest label { position: relative; cursor: pointer; }
+.interest input { position: absolute; opacity: 0; inset: 0; }
+.interest label span { display: block; height: 100%; border: 1.5px solid var(--line); border-radius: var(--radius-sm); padding: 12px 14px; font-size: .84rem; color: var(--muted); line-height: 1.4; transition: border-color .15s, background .15s; }
+.interest label span b { display: block; font-family: "Montserrat", sans-serif; font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin-bottom: 3px; }
+.interest label:hover span { border-color: var(--teal); }
+.interest input:checked + span { border-color: var(--teal); background: var(--teal-tint); box-shadow: inset 0 0 0 1px var(--teal); }
+.interest input:focus-visible + span { outline: 3px solid rgba(62,166,157,.45); outline-offset: 2px; }
+.field-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 18px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field.full { margin-top: 16px; }
+.field span { font-size: .84rem; font-weight: 600; color: var(--navy); }
+.field i { color: var(--teal); font-style: normal; }
+.field input, .field textarea { font: inherit; font-size: .95rem; color: var(--ink); border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 13px; background: var(--white); width: 100%; transition: border-color .15s, box-shadow .15s; }
+.field textarea { resize: vertical; min-height: 120px; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(62,166,157,.2); }
+.field input::placeholder, .field textarea::placeholder { color: #9aa6b4; }
+.field.invalid input, .field.invalid textarea { border-color: #c2413a; }
+.interest.invalid label span { border-color: #c2413a; }
+.hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-foot { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 22px; }
+.form-foot .btn { border: 0; }
+.form-foot .btn[disabled] { opacity: .65; cursor: wait; transform: none; }
+.privacy { margin: 0; font-size: .82rem; color: var(--muted); }
+.form-status { margin-top: 16px; font-size: .92rem; }
+.form-status:empty { display: none; }
+.form-status.ok { padding: 14px 16px; border-radius: 10px; background: var(--teal-tint); color: var(--navy); border-left: 4px solid var(--teal); }
+.form-status.err { padding: 14px 16px; border-radius: 10px; background: #fbeceb; color: #8a2a24; border-left: 4px solid #c2413a; }
+.form-status a { color: inherit; font-weight: 600; }
+@media (max-width: 1000px) {
+  .enquire { grid-template-columns: 1fr; }
+  .interest { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .field-grid, .interest { grid-template-columns: 1fr; }
+}
