@@ -1,8 +1,8 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><style>
-@font-face{font-family:M;font-weight:300;src:url(../../public/assets/fonts/montserrat-latin-300-normal.woff2)}
-@font-face{font-family:M;font-weight:500;src:url(../../public/assets/fonts/montserrat-latin-500-normal.woff2)}
-@font-face{font-family:M;font-weight:600;src:url(../../public/assets/fonts/montserrat-latin-600-normal.woff2)}
-@font-face{font-family:M;font-weight:700;src:url(../../public/assets/fonts/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:M;font-weight:300;src:url(/home/claude/cxinstitute-site/public/assets/fonts/montserrat-latin-300-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(/home/claude/cxinstitute-site/public/assets/fonts/montserrat-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:600;src:url(/home/claude/cxinstitute-site/public/assets/fonts/montserrat-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(/home/claude/cxinstitute-site/public/assets/fonts/montserrat-latin-700-normal.woff2)}
 *{box-sizing:border-box;margin:0}
 body{width:1200px;height:630px;overflow:hidden;background:#173C68;font-family:M;color:#fff;position:relative}
 .ring{position:absolute;border-radius:50%;border:1.5px solid rgba(62,166,157,.35)}
@@ -11,9 +11,10 @@ body{width:1200px;height:630px;overflow:hidden;background:#173C68;font-family:M;
 .logo{height:104px}
 .eyebrow{margin-top:30px;font-weight:600;font-size:15px;letter-spacing:.3em;color:#6cc3bb;display:flex;align-items:center;gap:14px;text-transform:uppercase}
 .eyebrow:before{content:"";width:34px;height:2px;background:#6cc3bb}
-h1{margin-top:16px;font-weight:700;font-size:52px;line-height:1.08;letter-spacing:-.01em}
+h1{margin-top:14px;font-weight:700;font-size:40px;line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+h1 span{display:block}
 h1 span{color:#3EA69D}
-.tag{margin-top:22px;font-size:19px;font-weight:500;color:#c5d4e5;letter-spacing:.02em}
+.tag{margin-top:16px;font-size:20px;color:#fff !important;font-weight:500;color:#c5d4e5;letter-spacing:.02em}
 .tiles{position:absolute;right:56px;top:58px;width:400px;display:flex;flex-direction:column;gap:12px}
 .tile{position:relative;height:160px;border-radius:14px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.35)}
 .tile img{width:100%;height:100%;object-fit:cover}
@@ -26,18 +27,20 @@ h1 span{color:#3EA69D}
 .bar .url{margin-left:auto;letter-spacing:.06em;text-transform:none;color:#6cc3bb;font-weight:500;font-size:15px}
 .bar .url:before{display:none}
 .tile em.two{text-align:right;line-height:1.25;white-space:normal}.tile em.two small{display:block;white-space:nowrap;font-size:11.5px;font-weight:500;color:#c5d4e5;letter-spacing:.01em}
+.pill{margin-top:12px;font-weight:600;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#6cc3bb}
 </style></head><body>
 <div class="ring r2"></div><div class="ring r1"></div>
 <div class="left">
-  <img class="logo" src="../../public/assets/img/cxisa-logo-white.png">
+  <img class="logo" src="/home/claude/cxinstitute-site/public/assets/img/cxisa-logo-white.png">
   <p class="eyebrow">The home of customer-centric culture</p>
-  <h1>Three ways to build a <span>customer-centric</span> organisation.</h1>
-  <p class="tag">Keynotes · The Customer Journey Game© · TOUCHPOINTS</p>
+  <h1>Stop talking about customer experience. <span>Start empowering your people to live it.</span></h1>
+  <p class="tag">At every moment, on every touchpoint.</p>
+  <p class="pill">Inspire them. &nbsp;Inform them. &nbsp;Involve them.</p>
 </div>
 <div class="tiles">
-  <div class="tile"><img src="tile-inspire-toned.jpg"><div class="lab"><b>01</b><i>CX Inspire</i><em>CX Keynotes</em></div></div>
-  <div class="tile"><img src="tile-experience-toned.jpg"><div class="lab"><b>02</b><i>CX Interactive</i><em>Customer Journey Game©</em></div></div>
-  <div class="tile"><img src="../../public/assets/img/touchpoints-team.jpg"><div class="lab"><b>03</b><i>CX Integrate</i><em class="two">TOUCHPOINTS<small>CX Evolution Programme</small></em></div></div>
+  <div class="tile"><img src="tile1-toned.jpg"><div class="lab"><b>01</b><i>CX Inspire</i><em>CX Keynotes</em></div></div>
+  <div class="tile"><img src="tile2-toned.jpg"><div class="lab"><b>02</b><i>CX Interactive</i><em>Customer Journey Game©</em></div></div>
+  <div class="tile"><img src="/home/claude/cxinstitute-site/public/assets/img/touchpoints-team.jpg"><div class="lab"><b>03</b><i>CX Integrate</i><em class="two">TOUCHPOINTS<small>CX Evolution Programme</small></em></div></div>
 </div>
 <div class="bar"><span>People centred</span><span>Experience driven</span><span>Impact focused</span><span>Transformation that lasts</span><span class="url">cxinstitute.co.za</span></div>
 </body></html>
