@@ -616,3 +616,17 @@ p { margin: 0 0 1em; }
 .hero-pillars span { display: inline-block; margin-right: .6em; }
 .hero h1 .hl { display: block; }
 .hero h1, .hero h1 .hl { text-wrap: balance; }
+
+/* Five I's of Employee Engagement */
+.five-i { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 40px; }
+.i-card { background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: var(--radius-sm); padding: 22px 20px 20px; display: flex; flex-direction: column; }
+.i-card .i-mark { font-family: "Montserrat", sans-serif; font-weight: 300; font-size: 2.4rem; line-height: 1; color: var(--teal); }
+.i-card h3 { margin: 8px 0 8px; font-size: 1.2rem; color: var(--navy); }
+.i-card p { color: var(--muted); font-size: .93rem; margin: 0 0 16px; }
+.i-card .via { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; padding-top: 14px; border-top: 1px solid var(--line); }
+.i-card .via span { font-family: "Montserrat", sans-serif; font-size: .64rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--navy); background: var(--teal-tint); border-radius: 999px; padding: 4px 9px; }
+.source-note { margin-top: 22px; font-size: .8rem; color: var(--muted); }
+.lead a { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 1020px) { .five-i { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .five-i { grid-template-columns: 1fr; } }
+.i-card h3 b { color: var(--teal); }
