@@ -51,9 +51,9 @@ def header(active_home=False):
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <nav class="nav" id="nav" aria-label="Main">
-      <a href="/#inspire"><span class="num">01</span>Inspire</a>
-      <a href="/#experience"><span class="num">02</span>Experience</a>
-      <a href="/#embed"><span class="num">03</span>Embed</a>
+      <a href="/#inspire"><span class="num">01</span>CX Inspire</a>
+      <a href="/#experience"><span class="num">02</span>CX Interactive</a>
+      <a href="/#embed"><span class="num">03</span>CX Integrate</a>
       <a href="/keynotes/"{' aria-current="page"' if active_home else ''}>CX Keynotes</a>
       <a href="/#about">About</a>
       <a class="btn btn-teal" href="#enquire">Let's talk</a>
