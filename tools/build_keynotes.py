@@ -51,10 +51,11 @@ def header(active_home=False):
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <nav class="nav" id="nav" aria-label="Main">
-      <a href="/#inspire"><span class="num">01</span>CX Inspire</a>
-      <a href="/#experience"><span class="num">02</span>CX Interactive</a>
-      <a href="/#embed"><span class="num">03</span>CX Integrate</a>
       <a href="/keynotes/"{' aria-current="page"' if active_home else ''}>CX Keynotes</a>
+      <a href="/#experience">CX Game</a>
+      <a href="https://touchpointshome.pages.dev/#solutions">Journey Mapping</a>
+      <a href="/#embed">CX Implementation</a>
+      <a href="https://cxuniversity.com/">CX University</a>
       <a href="/#about">About</a>
       <a class="btn btn-teal" href="#enquire">Let's talk</a>
     </nav>
@@ -83,7 +84,7 @@ def page(title, desc, path, body, interest="keynote", og_image="/assets/img/keyn
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <link rel="preload" href="/assets/fonts/montserrat-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/site.css?v=1.3">
+  <link rel="stylesheet" href="/assets/css/site.css?v=1.3-nav">
 </head>
 <body>
 
