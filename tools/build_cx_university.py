@@ -35,7 +35,7 @@ COURSES = [
     (
         "ai", "X in the Age of AI", "USD 995 · Instructor-led online",
         "Explore how to apply AI to customer journeys, personalisation and decision-making. Learn to evaluate organisational readiness and move from pilots to responsible deployment.",
-        "https://cxuniversity.com/product/ai-and-cx-leadership-course-south-africa/",
+        SHOP,
     ),
 ]
 
@@ -407,6 +407,72 @@ def build_patient_detail(image, title, description, enrol_url):
     )
 
 
+def build_ai_detail(image, title, description, enrol_url):
+    slug = DETAILS[image][0]
+    body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
+  <div class="opener-media">{photo(image, eager=True)}</div>
+  <div class="opener-text">
+    <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
+    <h1 id="course-title">AI - CX Leadership - Online course</h1>
+    <p><strong>Price U$D995.00</strong><br>
+      Instructor-led online course<br>
+      Enrol and pay online</p>
+  </div>
+</section>
+<section class="section" aria-labelledby="course-overview">
+  <div class="wrap narrow">
+    <h2 id="course-overview">Why Take the X in the Age of AI South Africa?</h2>
+    <p>In today’s AI-driven economy, the integration of Artificial Intelligence into Customer Experience (CX) is no longer a futuristic vision—it’s a present-day imperative. As customer expectations evolve rapidly, intelligent systems are redefining how brands engage, personalize, and optimize interactions across the customer journey. As AI shifts from theoretical promise to practical implementation, organizations are embracing it as a core engine of customer engagement.</p>
+    <p>This course explores how AI functions—such as learning, perception, and natural language processing—combine to power emotionally intelligent, real-time, and predictive experiences. As the AI landscape matures, Customer Experience (CX) enters a new phase: intelligent journey orchestration. Moving beyond isolated touchpoints, the course also explores how organizations can harness AI to orchestrate real-time, end-to-end customer journeys that are adaptive, predictive, and deeply personalized. Finally, it explores how companies move from isolated pilots to organization-wide systems that deliver consistent, ethical, and high-impact customer experiences.</p>
+    <p>The focus is on embedding AI into real business workflows, aligning technology with strategy, and establishing a foundation of trust, governance, and cross-functional collaboration.</p>
+    <p>The course describes how customer experience teams can use AI to drive real-time personalization, improve decision-making, and automate at scale—without losing the human element. The course also examines how to bridge the gap between strategy and execution using models for AI adoption, leadership readiness, and responsible deployment.</p>
+    <ul>
+      <li>Master the art of leading in an AI-powered world</li>
+      <li>Fast-track your career with cutting-edge AI-CX expertise</li>
+      <li>Harness the five AI functions that transform customer engagement</li>
+      <li>Drive results by reducing costs and boosting conversions with AI</li>
+      <li>Deliver real-time personalization and sentiment-driven adaptation</li>
+      <li>Pinpoint your organization’s position on the CX-AI maturity curve</li>
+      <li>Demystify generative AI and discover how it redefines customer experiences</li>
+    </ul>
+    <p>Confirm the course access period with CX University before enrolling.</p>
+    <p><a class="text-link" href="https://el281.infusionsoft.app/app/form/x-in-the-age-of-ai-course-guide">Download the Course Guide</a></p>
+    <h2>What You’ll Learn</h2>
+    <p>By the end of this program, you will be able to:</p>
+    <ul>
+      <li>Develop advanced CX leadership mastery in an AI-driven business environment</li>
+      <li>Build career momentum through applied AI-CX knowledge</li>
+      <li>Identify and apply the five foundational AI functions in customer engagement</li>
+      <li>Optimize business performance by reducing costs and improving conversions with AI</li>
+      <li>Implement AI principles for real-time personalization, automation, and sentiment-based adaptation</li>
+    </ul>
+    <p><a class="text-link" href="https://cxuniversity.com/product/ai-and-cx-leadership-course-south-africa/#eae-pupup-item-1798988385">View Full Calendar</a></p>
+    <h2>Who Should Enroll?</h2>
+    <p>This course is ideal for:</p>
+    <ul>
+      <li>CX professionals looking to gain a formal credential and advance in their careers.</li>
+      <li>Marketing &amp; Customer Success leaders who want to influence revenues, profits, cost reduction, and easy customer acquisition and retention.</li>
+      <li>Business owners &amp; entrepreneurs aiming to differentiate their brand through outstanding CX.</li>
+      <li>Consultants &amp; strategists seeking a deeper understanding of customer behavior.</li>
+      <li>Anyone looking to build practical mapping skills, drive alignment across teams, and influence experience-focused decision-making.</li>
+    </ul>
+  </div>
+</section>
+<section class="section dark" id="enquire" aria-labelledby="course-enrol">
+  <div class="wrap narrow">
+    <h2 id="course-enrol">Enrol with CX University</h2>
+    <div class="btn-row">
+      <a class="btn btn-teal" href="{e(enrol_url)}">Enrol in X in the Age of AI</a>
+      <a class="btn btn-ghost" href="mailto:lynn@cx-company.com?subject=CX%20University%20course%20enquiry">Ask Lynn a question</a>
+    </div>
+  </div>
+</section>'''
+    return page(
+        title + " | CX University | CX Institute SA", description,
+        ROUTE + slug + "/", body, og_image=IMAGES + "/" + image + ".webp",
+    )
+
+
 def build_detail(image, title, facts, description, enrol_url):
     if image == "cxs":
         return build_cxs_detail(image, description, enrol_url)
@@ -416,12 +482,10 @@ def build_detail(image, title, facts, description, enrol_url):
         return build_mapping_detail(image, title, description, enrol_url)
     if image == "patient":
         return build_patient_detail(image, title, description, enrol_url)
+    if image == "ai":
+        return build_ai_detail(image, title, description, enrol_url)
     slug, audience, topics, format_description = DETAILS[image]
     topics_html = "\n".join(f"      <li>{e(topic)}</li>" for topic in topics)
-    guide = (
-        '<p><a class="text-link" href="https://el281.infusionsoft.app/app/form/x-in-the-age-of-ai-course-guide">Request the course guide →</a></p>'
-        if image == "ai" else ""
-    )
     body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
   <div class="opener-media">{photo(image, eager=True)}</div>
   <div class="opener-text">
@@ -441,7 +505,6 @@ def build_detail(image, title, facts, description, enrol_url):
     <p>{e(audience)}</p>
     <h2>How the course works</h2>
     <p>{e(format_description)}</p>
-{guide}
   </div>
 </section>
 <section class="section dark" id="enquire" aria-labelledby="course-enrol">
