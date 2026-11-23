@@ -10,7 +10,7 @@ COURSES = [
     (
         "cxs", "Customer Experience Specialist (CXS)™", "USD 175 · Self-paced · 3 months’ access",
         "Study five CX competencies at your own pace. Each module includes a quiz, and the certification assessment unlocks when you complete the coursework. No prerequisites.",
-        "https://cxuniversity.com/product/customer-experience-specialist-cxs-program-south-africa/",
+        SHOP,
     ),
     (
         "roadmap", "90-Day Roadmap to CXS™", "USD 595 · Guided cohort · 6 months’ access",
@@ -43,15 +43,15 @@ COURSES = [
 DETAILS = {
     "cxs": (
         "customer-experience-specialist",
-        "CX practitioners and professionals moving into CX who want a recognised credential and the flexibility to study independently.",
+        "",
         [
-            "Translate customer needs and business priorities into a CX strategy.",
-            "Build a customer-focused culture and define who is accountable for delivery.",
-            "Choose relevant CX measures and interpret the results.",
-            "Use design and improvement methods to improve customer interactions.",
-            "Turn customer feedback and other evidence into decisions.",
+            "Strategy in Action – Develop and execute CX strategies that drive measurable business impact.",
+            "Culture and Accountability – Build a strong, customer-first culture across your organization.",
+            "Metrics and Analysis – Measure CX success with key data insights and analytics.",
+            "Improvement and Design – Use design thinking to continuously refine and enhance customer experiences.",
+            "Voice of the Customer & Intelligence – Leverage customer insights to shape strategic decisions",
         ],
-        "Work through five online modules over three months. Quizzes reinforce the material. The CXS assessment becomes available after you complete the coursework. No prerequisites are required.",
+        "This program is entirely self-contained and built for independent study, allowing you to learn and review material at your own pace and schedule. We recommend that you work through each module sequentially. This program includes five focused modules covering the most important CX best practices and applied competencies used by high-performing teams. Every module ends with a quiz to reinforce learning and track your progress.",
     ),
     "roadmap": (
         "90-day-roadmap-to-cxs",
@@ -203,7 +203,65 @@ def build():
     )
 
 
+def build_cxs_detail(image, description, enrol_url):
+    slug, _, topics, access = DETAILS[image]
+    topics_html = "\n".join(f"      <li>{e(topic)}</li>" for topic in topics)
+    body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
+  <div class="opener-media">{photo(image, eager=True)}</div>
+  <div class="opener-text">
+    <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
+    <h1 id="course-title">Customer Experience Specialist (CXS)</h1>
+    <p class="kn-sub">Online Certification course</p>
+    <p><strong>Price USD 175.00</strong><br>
+      Self-paced online course / 3 months’ access<br>
+      Enrol and pay online</p>
+    <p>Earn your Customer Experience Specialist (CXS)™ certificate by completing the online program and passing the certification exam available directly inside your LMS portal once you finish the coursework. This isn’t “just another course.” It’s a practical, career-boosting program designed to help you build CX confidence, speak the language of leadership, and drive measurable results across teams, departments, and customer touchpoints.</p>
+  </div>
+</section>
+<section class="section" aria-labelledby="course-topics">
+  <div class="wrap narrow">
+    <h2 id="course-topics">What You’ll Learn</h2>
+    <p>The Customer Experience Specialist CXS online course is structured into five expert-developed modules, covering every critical aspect of customer experience:</p>
+    <ul>
+{topics_html}
+    </ul>
+    <p>As a certified Customer Experience Specialist (CXS)™, you’ll be equipped to:</p>
+    <ul>
+      <li>Turn customer insights into clear, strategic actions</li>
+      <li>Improve experiences that increase loyalty, retention, and revenue</li>
+      <li>Influence internal stakeholders with the right CX frameworks and metrics</li>
+      <li>Lead CX initiatives at any level, without needing a fancy title</li>
+    </ul>
+    <h2>Course Access</h2>
+    <p>{e(access)}</p>
+    <p>Your purchase includes:</p>
+    <ul>
+      <li>3 months of access to all online modules</li>
+      <li>Access to the Customer Experience Specialist (CXS)™ certification exam (unlocked after completing the courses)</li>
+      <li>A complete learning path built to help you finish strong and certify with confidence</li>
+    </ul>
+    <h2>Pre-Requisites</h2>
+    <p>No prerequisites are necessary as this course covers all CX Core Competencies.</p>
+  </div>
+</section>
+<section class="section dark" id="enquire" aria-labelledby="course-enrol">
+  <div class="wrap narrow">
+    <h2 id="course-enrol">Enrol with CX University</h2>
+    <div class="btn-row">
+      <a class="btn btn-teal" href="{e(enrol_url)}">Enrol on CXS Course</a>
+      <a class="btn btn-ghost" href="mailto:lynn@cx-company.com?subject=CX%20University%20course%20enquiry">Ask Lynn a question</a>
+    </div>
+  </div>
+</section>'''
+    return page(
+        "Customer Experience Specialist (CXS)™ | CX University | CX Institute SA",
+        description, ROUTE + slug + "/", body, og_image=IMAGES + "/" + image + ".webp",
+    )
+
+
 def build_detail(image, title, facts, description, enrol_url):
+    if image == "cxs":
+        return build_cxs_detail(image, description, enrol_url)
     slug, audience, topics, format_description = DETAILS[image]
     topics_html = "\n".join(f"      <li>{e(topic)}</li>" for topic in topics)
     guide = (
