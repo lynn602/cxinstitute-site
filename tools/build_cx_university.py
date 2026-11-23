@@ -315,11 +315,57 @@ def build_roadmap_detail(image, title, description, enrol_url):
     )
 
 
+def build_mapping_detail(image, title, description, enrol_url):
+    slug = DETAILS[image][0]
+    body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
+  <div class="opener-media">{photo(image, eager=True)}</div>
+  <div class="opener-text">
+    <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
+    <h1 id="course-title">Applied Customer Journey Mapping course</h1>
+    <p><strong>Price U$D750.00</strong><br>
+      Self-paced online course / 6 months access<br>
+      Enrol and pay online</p>
+  </div>
+</section>
+<section class="section" aria-labelledby="course-overview">
+  <div class="wrap narrow">
+    <h2 id="course-overview">Why Take the Applied Customer Journey Mapping?</h2>
+    <p>Customer journey mapping is an essential methodology to build your organization’s customer-centricity. Journey maps serve as guides to help you anticipate your customers’ needs, deliver excellent experiences, and promote collaboration across silos.</p>
+    <p>Customer journey maps yield deep insights into which touchpoints matter the most to your customers. With all of your stakeholders focusing on the customer experience, you can move closer to delivering on your brand promise.</p>
+    <p>Visualizing the Customer Experience with journey maps is becoming ever more important in modern organizations. With this course, you will develop mastery in journey mapping methodology and direct application to your own customers’ challenges.</p>
+    <h2>Course Highlights</h2>
+    <ul>
+      <li>Six online courses packed with practical playbooks, seminal articles, and expert videos.</li>
+      <li>Free access to JourneyTrack™, a comprehensive customer journey mapping platform, to help you create, manage, and iterate on your journey maps.</li>
+      <li>Six post-review virtual meet-up classes to ensure continuous learning and feedback.</li>
+      <li>Guidance and coaching from CX experts to support your journey mapping journey.</li>
+      <li>Build and deliver your own map, tailored to your organization’s specific needs.</li>
+      <li>You will have access to complete the course for 6 months from the starting date.</li>
+    </ul>
+  </div>
+</section>
+<section class="section dark" id="enquire" aria-labelledby="course-enrol">
+  <div class="wrap narrow">
+    <h2 id="course-enrol">Enrol with CX University</h2>
+    <div class="btn-row">
+      <a class="btn btn-teal" href="{e(enrol_url)}">Enrol in Applied Customer Journey Mapping Course</a>
+      <a class="btn btn-ghost" href="mailto:lynn@cx-company.com?subject=CX%20University%20course%20enquiry">Ask Lynn a question</a>
+    </div>
+  </div>
+</section>'''
+    return page(
+        title + " | CX University | CX Institute SA", description,
+        ROUTE + slug + "/", body, og_image=IMAGES + "/" + image + ".webp",
+    )
+
+
 def build_detail(image, title, facts, description, enrol_url):
     if image == "cxs":
         return build_cxs_detail(image, description, enrol_url)
     if image == "roadmap":
         return build_roadmap_detail(image, title, description, enrol_url)
+    if image == "mapping":
+        return build_mapping_detail(image, title, description, enrol_url)
     slug, audience, topics, format_description = DETAILS[image]
     topics_html = "\n".join(f"      <li>{e(topic)}</li>" for topic in topics)
     guide = (
