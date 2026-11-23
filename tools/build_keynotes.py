@@ -41,7 +41,7 @@ def heading(pair, tag="h2", cls=""):
     return f'<{tag}{c}>{e(plain)} <span class="hl">{e(hl)}</span></{tag}>'
 
 
-def header(active_home=False, active_university=False):
+def header(active_home=False, active_university=False, enquiry_href="#enquire"):
     return f'''<header class="site-header">
   <div class="wrap">
     <a class="brand" href="/" aria-label="CX Institute SA home">
@@ -58,13 +58,13 @@ def header(active_home=False, active_university=False):
       <a href="/#embed">CX Implementation</a>
       <a href="/cx-university-online-training-courses/"{' aria-current="page"' if active_university else ''}>CX University</a>
       <a href="/#about">About</a>
-      <a class="btn btn-teal" href="#enquire">Let's talk</a>
+      <a class="btn btn-teal" href="{enquiry_href}">Let's talk</a>
     </nav>
   </div>
 </header>'''
 
 
-def page(title, desc, path, body, interest="keynote", og_image="/assets/img/keynotes/b2b-card.jpg", active_home=False):
+def page(title, desc, path, body, interest="keynote", og_image="/assets/img/keynotes/b2b-card.jpg", active_home=False, enquiry_href="#enquire"):
     form = FORM.replace('<form class="enquire-form" id="enquire-form" novalidate>',
                         f'<form class="enquire-form" id="enquire-form" data-default-interest="{interest}" novalidate>')
     body = body.replace("{{FORM}}", form)
@@ -91,7 +91,7 @@ def page(title, desc, path, body, interest="keynote", og_image="/assets/img/keyn
 
 {SPRITE}
 
-{header(active_home, active_university=path.startswith("/cx-university-online-training-courses/"))}
+{header(active_home, active_university=path.startswith("/cx-university-online-training-courses/"), enquiry_href=enquiry_href)}
 
 <main>
 {body}
