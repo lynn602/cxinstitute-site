@@ -78,6 +78,7 @@ p { margin: 0 0 1em; }
   align-items: center;
   gap: 12px;
 }
+.hero .eyebrow, .hero h1 .hl, .section.dark > .wrap > .eyebrow, .objective .eyebrow { color: var(--teal-light); }
 .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; }
 .lead { font-size: 1.12rem; color: var(--muted); max-width: 720px; }
 .dark .lead { color: #c5d4e5; }
