@@ -5,6 +5,7 @@ from build_keynotes import e, page, write
 ROUTE = "/cx-university-online-training-courses/"
 IMAGES = "/assets/img/cx-university"
 SHOP = "https://cxuniversity.com/shop-south-africa/"
+HOME_BUTTON = '<p><a class="btn btn-ghost" href="/">← Back to home</a></p>'
 
 COURSES = [
     (
@@ -134,6 +135,7 @@ def build():
     body = f'''<section class="opener navy kn-hero" aria-labelledby="university-title">
   <div class="opener-media">{photo("hero", eager=True)}</div>
   <div class="opener-text">
+    {HOME_BUTTON}
     <img src="{IMAGES}/logo.webp" alt="CX University" width="175" style="height:auto;margin-bottom:18px">
     <p class="eyebrow">CX University · South Africa</p>
     <h1 id="university-title">Online customer experience courses and certification</h1>
@@ -209,6 +211,7 @@ def build_cxs_detail(image, description, enrol_url):
     body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
   <div class="opener-media">{photo(image, eager=True)}</div>
   <div class="opener-text">
+    {HOME_BUTTON}
     <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
     <h1 id="course-title">Customer Experience Specialist (CXS)</h1>
     <p class="kn-sub">Online Certification course</p>
@@ -265,6 +268,7 @@ def build_roadmap_detail(image, title, description, enrol_url):
     body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
   <div class="opener-media">{photo(image, eager=True)}</div>
   <div class="opener-text">
+    {HOME_BUTTON}
     <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
     <h1 id="course-title">90 Day Roadmap to<br>Customer Experience Specialist (CXS)</h1>
     <p class="kn-sub">Blended online learning and virtual instructor led sessions</p>
@@ -320,6 +324,7 @@ def build_mapping_detail(image, title, description, enrol_url):
     body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
   <div class="opener-media">{photo(image, eager=True)}</div>
   <div class="opener-text">
+    {HOME_BUTTON}
     <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
     <h1 id="course-title">Applied Customer Journey Mapping course</h1>
     <p><strong>Price U$D750.00</strong><br>
@@ -364,6 +369,7 @@ def build_patient_detail(image, title, description, enrol_url):
     body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
   <div class="opener-media">{photo(image, eager=True)}</div>
   <div class="opener-text">
+    {HOME_BUTTON}
     <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
     <h1 id="course-title">Patient Experience Mastery (PX)</h1>
     <p class="kn-sub">Online Certification course</p>
@@ -412,6 +418,7 @@ def build_ai_detail(image, title, description, enrol_url):
     body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
   <div class="opener-media">{photo(image, eager=True)}</div>
   <div class="opener-text">
+    {HOME_BUTTON}
     <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
     <h1 id="course-title">AI - CX Leadership - Online course</h1>
     <p><strong>Price U$D995.00</strong><br>
@@ -489,6 +496,7 @@ def build_detail(image, title, facts, description, enrol_url):
     body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
   <div class="opener-media">{photo(image, eager=True)}</div>
   <div class="opener-text">
+    {HOME_BUTTON}
     <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
     <p class="eyebrow">{e(facts)}</p>
     <h1 id="course-title">{e(title)}</h1>
