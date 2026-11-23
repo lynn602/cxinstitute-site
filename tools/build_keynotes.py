@@ -91,7 +91,7 @@ def page(title, desc, path, body, interest="keynote", og_image="/assets/img/keyn
 
 {SPRITE}
 
-{header(active_home, active_university=path == "/cx-university-online-training-courses/")}
+{header(active_home, active_university=path.startswith("/cx-university-online-training-courses/"))}
 
 <main>
 {body}

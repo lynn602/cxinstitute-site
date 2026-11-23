@@ -40,19 +40,91 @@ COURSES = [
 ]
 
 
+DETAILS = {
+    "cxs": (
+        "customer-experience-specialist",
+        "CX practitioners and professionals moving into CX who want a recognised credential and the flexibility to study independently.",
+        [
+            "Translate customer needs and business priorities into a CX strategy.",
+            "Build a customer-focused culture and define who is accountable for delivery.",
+            "Choose relevant CX measures and interpret the results.",
+            "Use design and improvement methods to improve customer interactions.",
+            "Turn customer feedback and other evidence into decisions.",
+        ],
+        "Work through five online modules over three months. Quizzes reinforce the material. The CXS assessment becomes available after you complete the coursework. No prerequisites are required.",
+    ),
+    "roadmap": (
+        "90-day-roadmap-to-cxs",
+        "Professionals who want live expert guidance, a study cohort and a structured route to the CXS credential.",
+        [
+            "Connect CX strategy with day-to-day business decisions.",
+            "Define the behaviours and responsibilities that support a customer-focused culture.",
+            "Measure CX performance and identify opportunities for improvement.",
+            "Apply customer research and design methods to priority journeys.",
+            "Use customer insights to influence stakeholders and guide action.",
+        ],
+        "Combine online study with live virtual sessions. You have six months’ access to course materials. The programme includes CCXP exam preparation. Check the enrolment page for the next cohort and session dates.",
+    ),
+    "ccxp": (
+        "ccxp-exam-prep",
+        "Experienced CX practitioners who intend to sit the CXPA’s Certified Customer Experience Professional exam.",
+        [
+            "Review strategy, culture and accountability, and the role of customer evidence.",
+            "Practise questions that cover CX measurement, analysis, improvement and design.",
+            "Use practice exams and answer explanations to identify areas for further study.",
+        ],
+        "Study independently with online materials, interactive exercises and practice assessments for six months. The CXPA handles CCXP exam registration, eligibility and certification separately.",
+    ),
+    "mapping": (
+        "applied-customer-journey-mapping",
+        "CX practitioners, consultants and cross-functional teams who want to use a journey map to address a real service challenge.",
+        [
+            "Choose a journey, set its scope and gather customer evidence.",
+            "Visualise customer actions, needs and pain points across touchpoints.",
+            "Identify which moments need attention and bring the relevant teams into the work.",
+            "Build and refine your own journey map using JourneyTrack during the course.",
+        ],
+        "Work through six online courses with practical resources, expert coaching and virtual review sessions. You have six months to complete the programme.",
+    ),
+    "patient": (
+        "patient-experience-mastery",
+        "Healthcare professionals and patient experience leaders who want to improve how patients experience care.",
+        [
+            "Develop a patient experience strategy and clarify responsibilities for delivery.",
+            "Build a patient-centred culture across care and support teams.",
+            "Select patient experience measures and interpret the results.",
+            "Use design methods and patient feedback to improve care interactions.",
+        ],
+        "Study five online courses at your own pace with six months’ access. Complete the coursework and pass the assessment to earn the Patient Experience Specialist (PXS) credential. No prerequisites are listed.",
+    ),
+    "ai": (
+        "x-in-the-age-of-ai",
+        "CX leaders, consultants and teams evaluating where AI can improve service, customer journeys and operations.",
+        [
+            "Identify where AI can support personalisation, service decisions and automation.",
+            "Assess your organisation’s readiness for AI across the customer journey.",
+            "Use customer signals to design responsive journeys while preserving human support.",
+            "Plan how to move from pilots to wider adoption with clear governance and accountability.",
+        ],
+        "Learn online with instructor guidance and apply the frameworks to your organisation. Confirm dates and access terms on the enrolment page.",
+    ),
+}
+
+
 def photo(name, eager=False):
     loading = 'fetchpriority="high"' if eager else 'loading="lazy"'
     return f'<img src="{IMAGES}/{e(name)}.webp" alt="" {loading} decoding="async">'
 
 
-def course_card(image, title, facts, description, url):
+def course_card(image, title, facts, description, _):
+    url = ROUTE + DETAILS[image][0] + "/"
     return f'''<article class="kn-card">
   <div class="kn-card-img">{photo(image)}</div>
   <div class="kn-card-body">
     <p class="k-kicker">{e(facts)}</p>
     <h3>{e(title)}</h3>
     <div class="kn-blurb"><p>{e(description)}</p></div>
-    <div class="kn-links"><a class="btn btn-navy" href="{e(url)}" aria-label="{e("View enrolment options for " + title)}">View enrolment options</a></div>
+    <div class="kn-links"><a class="btn btn-navy" href="{e(url)}" aria-label="{e("View course details for " + title)}">View course details</a></div>
   </div>
 </article>'''
 
@@ -76,7 +148,7 @@ def build():
   <div class="wrap">
     <p class="eyebrow">Study with CX University</p>
     <h2 id="courses-title">CX University courses</h2>
-    <p class="lead">Courses are priced in US dollars. Enrol and pay directly through the <a href="{SHOP}">CX University South Africa catalogue</a>, where you can confirm current pricing and availability.</p>
+    <p class="lead">Courses are priced in US dollars. Open a course to see what you’ll learn, who it’s for and how to enrol.</p>
     <div class="kn-grid">
       {cards}
     </div>
@@ -112,7 +184,6 @@ def build():
       <p>Jeff Hursey, a Cisco Systems contact centre consulting systems engineer, reported that the training helped him prepare for the CCXP exam and gave him tools he could apply in his work.</p>
       <figcaption>CX University learner feedback</figcaption>
     </figure>
-    <p><a class="text-link" href="https://el281.infusionsoft.app/app/form/x-in-the-age-of-ai-course-guide">Request the X in the Age of AI course guide →</a></p>
   </div>
 </section>
 <section class="section dark" id="enquire" aria-labelledby="university-contact">
@@ -132,5 +203,52 @@ def build():
     )
 
 
+def build_detail(image, title, facts, description, enrol_url):
+    slug, audience, topics, format_description = DETAILS[image]
+    topics_html = "\n".join(f"      <li>{e(topic)}</li>" for topic in topics)
+    guide = (
+        '<p><a class="text-link" href="https://el281.infusionsoft.app/app/form/x-in-the-age-of-ai-course-guide">Request the course guide →</a></p>'
+        if image == "ai" else ""
+    )
+    body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
+  <div class="opener-media">{photo(image, eager=True)}</div>
+  <div class="opener-text">
+    <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
+    <p class="eyebrow">{e(facts)}</p>
+    <h1 id="course-title">{e(title)}</h1>
+    <p>{e(description)}</p>
+  </div>
+</section>
+<section class="section" aria-labelledby="course-topics">
+  <div class="wrap narrow">
+    <h2 id="course-topics">What you’ll learn</h2>
+    <ul>
+{topics_html}
+    </ul>
+    <h2>Who it’s for</h2>
+    <p>{e(audience)}</p>
+    <h2>How the course works</h2>
+    <p>{e(format_description)}</p>
+{guide}
+  </div>
+</section>
+<section class="section dark" id="enquire" aria-labelledby="course-enrol">
+  <div class="wrap narrow">
+    <h2 id="course-enrol">Enrol with CX University</h2>
+    <p class="lead">Confirm current pricing and availability, then enrol and pay through CX University.</p>
+    <div class="btn-row">
+      <a class="btn btn-teal" href="{e(enrol_url)}">ENROL NOW</a>
+      <a class="btn btn-ghost" href="mailto:lynn@cx-company.com?subject=CX%20University%20course%20enquiry">Ask Lynn a question</a>
+    </div>
+  </div>
+</section>'''
+    return page(
+        title + " | CX University | CX Institute SA", description,
+        ROUTE + slug + "/", body, og_image=IMAGES + "/" + image + ".webp",
+    )
+
+
 if __name__ == "__main__":
     write(ROUTE.strip("/") + "/index.html", build())
+    for course in COURSES:
+        write(ROUTE.strip("/") + "/" + DETAILS[course[0]][0] + "/index.html", build_detail(*course))
