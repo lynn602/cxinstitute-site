@@ -359,6 +359,54 @@ def build_mapping_detail(image, title, description, enrol_url):
     )
 
 
+def build_patient_detail(image, title, description, enrol_url):
+    slug = DETAILS[image][0]
+    body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
+  <div class="opener-media">{photo(image, eager=True)}</div>
+  <div class="opener-text">
+    <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
+    <h1 id="course-title">Patient Experience Mastery (PX)</h1>
+    <p class="kn-sub">Online Certification course</p>
+    <p><strong>Price U$D417.00</strong><br>
+      Self-paced online course / 6 months access<br>
+      Enrol and pay online</p>
+    <p>Become a master of Patient Experience and make an impact in your healthcare organization. This course leads to professional Patient Experience Specialist (PXS)™ certification. Learn at your own pace with comprehensive online courses aligned to the globally recognized domains of PX knowledge and skills.</p>
+  </div>
+</section>
+<section class="section" aria-labelledby="course-certification">
+  <div class="wrap narrow">
+    <h2 id="course-certification">Patient Experience Specialist (PXS)™ Certification</h2>
+    <p>Earn your Patient Experience Specialist (PXS)™ certificate by completing the online courses and passing the certification exam, which will be accessible in your LMS portal after you complete your courses. As a Patient Experience Specialist (PXS)™, you will harness the power of Patient Experience to move the needle in your work and organization. This program develops leaders and advocates for PX across all levels of a company.</p>
+    <h2>Course Details</h2>
+    <p>Each of the five Online Courses covers theoretical and best practice aspects of Patient Experience. Complete the Online Courses at your leisure from any online or mobile device. See below for the list of courses included in this package.</p>
+    <ul>
+      <li>PX 521 Patient Experience Strategy</li>
+      <li>PX 522 Patient-Centric Culture and Accountability</li>
+      <li>PX 523 Patient Experience Metrics and Analysis</li>
+      <li>PX 524 Improvement and Design</li>
+      <li>PX 525 Voice of the Customer/Patient (VOC/VOP) and Intelligence</li>
+    </ul>
+    <h2>Course Access</h2>
+    <p>This course is available through CX University’s subsidiary, PX Academy.</p>
+    <h2>Pre-Requisites</h2>
+    <p>No prerequisites necessary as these courses cover all PX Core Competencies</p>
+  </div>
+</section>
+<section class="section dark" id="enquire" aria-labelledby="course-enrol">
+  <div class="wrap narrow">
+    <h2 id="course-enrol">Enrol with CX University</h2>
+    <div class="btn-row">
+      <a class="btn btn-teal" href="{e(enrol_url)}">Enrol in Patient Experience Course</a>
+      <a class="btn btn-ghost" href="mailto:lynn@cx-company.com?subject=CX%20University%20course%20enquiry">Ask Lynn a question</a>
+    </div>
+  </div>
+</section>'''
+    return page(
+        title + " | CX University | CX Institute SA", description,
+        ROUTE + slug + "/", body, og_image=IMAGES + "/" + image + ".webp",
+    )
+
+
 def build_detail(image, title, facts, description, enrol_url):
     if image == "cxs":
         return build_cxs_detail(image, description, enrol_url)
@@ -366,6 +414,8 @@ def build_detail(image, title, facts, description, enrol_url):
         return build_roadmap_detail(image, title, description, enrol_url)
     if image == "mapping":
         return build_mapping_detail(image, title, description, enrol_url)
+    if image == "patient":
+        return build_patient_detail(image, title, description, enrol_url)
     slug, audience, topics, format_description = DETAILS[image]
     topics_html = "\n".join(f"      <li>{e(topic)}</li>" for topic in topics)
     guide = (
