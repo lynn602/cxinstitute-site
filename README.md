@@ -15,6 +15,6 @@ In Cloudflare → Workers & Pages → cxinstitute-site → Settings → Variable
 
 `TO_EMAIL` (lynn@cx-company.com) is set in `wrangler.jsonc`. Until the secrets exist, the form shows visitors Lynn's email and phone instead.
 
-Brand: navy #173C68, teal #3EA69D, game blue #1990B2 (game sections only). Montserrat headings, Inter body.
+Brand CI v1.3 uses CXISA Navy #002D57, Blue Lagoon #007F98, Signature Teal #0A8FB0 and Soft Aqua Blue #48B3C5, with Montserrat headings and Inter body text.
 
 Deploys automatically from `main` via Cloudflare Workers Builds.

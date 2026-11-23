@@ -79,11 +79,11 @@ def page(title, desc, path, body, interest="keynote", og_image="/assets/img/keyn
   <meta property="og:type" content="website">
   <meta property="og:url" content="{SITE}{path}">
   <meta property="og:image" content="{SITE}{og_image}">
-  <meta name="theme-color" content="#173C68">
+  <meta name="theme-color" content="#002D57">
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <link rel="preload" href="/assets/fonts/montserrat-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/site.css?v=1.3">
 </head>
 <body>
 
