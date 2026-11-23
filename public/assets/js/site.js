@@ -1,15 +1,41 @@
 // CX Institute SA – shared site scripts (menu, year, enquiry form)
 (function () {
-    var t = document.querySelector('.nav-toggle'), n = document.getElementById('nav');
-    t.addEventListener('click', function () {
-      var o = n.classList.toggle('open');
-      t.setAttribute('aria-expanded', o ? 'true' : 'false');
-    });
-    n.addEventListener('click', function (e) {
-      if (e.target.closest('a')) { n.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); }
-    });
-    var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
-  })();
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('nav');
+  if (!toggle || !nav) return;
+
+  function setOpen(open, restoreFocus) {
+    nav.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (!open && restoreFocus) toggle.focus();
+  }
+
+  toggle.addEventListener('click', function () {
+    setOpen(!nav.classList.contains('open'), false);
+  });
+
+  nav.addEventListener('click', function (event) {
+    if (event.target.closest('a')) setOpen(false, false);
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && nav.classList.contains('open')) {
+      event.preventDefault();
+      setOpen(false, true);
+    }
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!nav.classList.contains('open')) return;
+    if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+      setOpen(false, false);
+    }
+  });
+
+  var year = document.getElementById('yr');
+  if (year) year.textContent = new Date().getFullYear();
+})();
 
   (function () {
     var form = document.getElementById('enquire-form');
