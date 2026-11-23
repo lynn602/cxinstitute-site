@@ -11,27 +11,27 @@ COURSES = [
     (
         "cxs", "Customer Experience Specialist (CXS)™", "USD 175 · Self-paced · 3 months’ access",
         "Study five CX competencies at your own pace. Each module includes a quiz, and the certification assessment unlocks when you complete the coursework. No prerequisites.",
-        SHOP,
+        "https://cxuniversity.com/checkout/?add-to-cart=54984",
     ),
     (
         "roadmap", "90-Day Roadmap to CXS™", "USD 595 · Guided cohort · 6 months’ access",
         "Work towards the same CXS credential with a cohort, live expert sessions and independent study. The programme includes CCXP exam preparation. Check the South Africa catalogue for cohort dates.",
-        SHOP,
+        "https://cxuniversity.com/checkout/?add-to-cart=55002",
     ),
     (
         "ccxp", "CCXP Exam Prep", "USD 139 · Self-paced · 6 months’ access",
         "Review the CXPA’s five pillars and build exam confidence with practice questions and feedback. The CCXP certification exam is administered separately by the CXPA.",
-        "https://cxuniversity.com/product/ccxp-exam-prep-south-africa/",
+        "https://cxuniversity.com/checkout/?add-to-cart=54993",
     ),
     (
         "mapping", "Applied Customer Journey Mapping", "USD 750 · Blended learning · 6 months’ access",
         "Develop a journey map for a real challenge through six online courses, expert coaching and virtual review sessions. Use JourneyTrack™ during the programme to build and refine your map.",
-        SHOP,
+        "https://cxuniversity.com/checkout/?add-to-cart=54999",
     ),
     (
         "patient", "Patient Experience Mastery", "USD 417 · Self-paced · 6 months’ access",
         "Study patient-centred strategy, culture, measurement, design and patient feedback. Complete the five courses and pass the assessment to earn the Patient Experience Specialist (PXS)™ credential.",
-        SHOP,
+        "https://cxuniversity.com/checkout/?add-to-cart=55025",
     ),
     (
         "ai", "X in the Age of AI", "USD 995 · Instructor-led online",
