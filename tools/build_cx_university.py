@@ -259,9 +259,67 @@ def build_cxs_detail(image, description, enrol_url):
     )
 
 
+def build_roadmap_detail(image, title, description, enrol_url):
+    slug = DETAILS[image][0]
+    topics_html = "\n".join(f"      <li>{e(topic)}</li>" for topic in DETAILS["cxs"][2])
+    body = f'''<section class="opener navy kn-hero" aria-labelledby="course-title">
+  <div class="opener-media">{photo(image, eager=True)}</div>
+  <div class="opener-text">
+    <a class="back" href="{ROUTE}#courses">← All CX University courses</a>
+    <h1 id="course-title">90 Day Roadmap to<br>Customer Experience Specialist (CXS)</h1>
+    <p class="kn-sub">Blended online learning and virtual instructor led sessions</p>
+    <p><strong>Price U$D595.00</strong><br>
+      Self-paced online course / 6 months access<br>
+      Enroll and pay online</p>
+  </div>
+</section>
+<section class="section" aria-labelledby="course-benefits">
+  <div class="wrap narrow">
+    <p>In today’s competitive business landscape, exceptional customer experience (CX) isn’t just a luxury—it’s a necessity. CX Professionals help build loyalty, advocacy, and repeat customers. Companies are investing more than ever in CX professionals who can design, implement, and optimize experiences that drive loyalty and revenue. Bonus access to our CCXP Exam Prep Course (a $199 value) - ready for when you choose to pursue the CXPA’s Certified Customer Experience Professional (CCXP) designation.</p>
+    <p>The 90-Day Roadmap to CXS is your gateway to becoming a certified expert in customer experience. This self-paced, online course empowers you with the essential skills, strategies, and frameworks to lead CX initiatives with confidence and authority.</p>
+    <h2 id="course-benefits">Course benefits</h2>
+    <ul>
+      <li>Gain industry-recognized certification – Earn the Customer Experience Specialist (CXS) ™ credential to enhance your credibility and set yourself apart.</li>
+      <li>Master essential CX skills – Learn to create strategies, measure success, and build a customer-centric culture.</li>
+      <li>Advance your career – Stand out for promotions, new job opportunities, and leadership roles in CX.</li>
+      <li>Blended learning – A combination of instructor-led and self-paced learning with six months of online access to complete the course.</li>
+      <li>You will have access to complete the course for 6 months from the starting date.</li>
+    </ul>
+    <h2>What You’ll Learn</h2>
+    <p>The 90-Day Roadmap to CXS is structured into five expert-developed modules, covering every critical aspect of customer experience:</p>
+    <ul>
+{topics_html}
+    </ul>
+    <h2>Who Should Enroll?</h2>
+    <p>This course is ideal for:</p>
+    <ul>
+      <li>CX professionals looking to gain a formal credential and advance in their careers.</li>
+      <li>Marketing &amp; Customer Success leaders who want to influence revenues, profits, cost reduction, and easy customer acquisition and retention.</li>
+      <li>Business owners &amp; entrepreneurs aiming to differentiate their brand through outstanding CX.</li>
+      <li>Consultants &amp; strategists seeking a deeper understanding of customer behavior.</li>
+    </ul>
+  </div>
+</section>
+<section class="section dark" id="enquire" aria-labelledby="course-enrol">
+  <div class="wrap narrow">
+    <h2 id="course-enrol">Enrol with CX University</h2>
+    <div class="btn-row">
+      <a class="btn btn-teal" href="{e(enrol_url)}">Enrol in 90 Day Roadmap to CXS course</a>
+      <a class="btn btn-ghost" href="mailto:lynn@cx-company.com?subject=CX%20University%20course%20enquiry">Ask Lynn a question</a>
+    </div>
+  </div>
+</section>'''
+    return page(
+        title + " | CX University | CX Institute SA", description,
+        ROUTE + slug + "/", body, og_image=IMAGES + "/" + image + ".webp",
+    )
+
+
 def build_detail(image, title, facts, description, enrol_url):
     if image == "cxs":
         return build_cxs_detail(image, description, enrol_url)
+    if image == "roadmap":
+        return build_roadmap_detail(image, title, description, enrol_url)
     slug, audience, topics, format_description = DETAILS[image]
     topics_html = "\n".join(f"      <li>{e(topic)}</li>" for topic in topics)
     guide = (
