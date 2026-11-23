@@ -41,7 +41,7 @@ def heading(pair, tag="h2", cls=""):
     return f'<{tag}{c}>{e(plain)} <span class="hl">{e(hl)}</span></{tag}>'
 
 
-def header(active_home=False):
+def header(active_home=False, active_university=False):
     return f'''<header class="site-header">
   <div class="wrap">
     <a class="brand" href="/" aria-label="CX Institute SA home">
@@ -56,7 +56,7 @@ def header(active_home=False):
       <a href="/#experience">CX Game</a>
       <a href="https://touchpointshome.pages.dev/#solutions">Journey Mapping</a>
       <a href="/#embed">CX Implementation</a>
-      <a href="https://cxuniversity.com/">CX University</a>
+      <a href="/cx-university-online-training-courses/"{' aria-current="page"' if active_university else ''}>CX University</a>
       <a href="/#about">About</a>
       <a class="btn btn-teal" href="#enquire">Let's talk</a>
     </nav>
@@ -91,7 +91,7 @@ def page(title, desc, path, body, interest="keynote", og_image="/assets/img/keyn
 
 {SPRITE}
 
-{header(active_home)}
+{header(active_home, active_university=path == "/cx-university-online-training-courses/")}
 
 <main>
 {body}
