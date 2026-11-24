@@ -655,3 +655,13 @@ p { margin: 0 0 1em; }
   .hero-tile .label span{font-size:.57rem;letter-spacing:.04em;line-height:1.35;display:block;overflow-wrap:anywhere}
   .hero-tile .label em{display:none}
 }
+
+/* Homepage CTA placement beneath the three CX pillars */
+.hero-actions{padding-top:28px;padding-bottom:34px}
+.hero-actions .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin:0}
+@media (max-width:640px){
+  .hero-actions{padding:24px 22px 30px}
+  .hero-actions .btn-row{display:grid;grid-template-columns:1fr;gap:12px}
+  .hero-actions .btn-row .btn{display:block;text-align:center;font-size:.83rem;padding:14px 18px}
+  .hero h1{font-size:clamp(1.8rem,7vw,2.5rem);line-height:1.18}
+}
