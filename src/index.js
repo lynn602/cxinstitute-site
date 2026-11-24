@@ -107,6 +107,7 @@ const AUDIENCES = ['Board Level','Executives & Senior Leaders','Management','Sup
 export function validateKeynote(data) {
   const f = {
     keynote: clean(data.keynote, 80),
+    keynote_format: clean(data.keynote_format, 40),
     company: oneLine(clean(data.company, 150)),
     name: oneLine(clean(data.name, 100)),
     role: oneLine(clean(data.role, 100)),
@@ -123,6 +124,7 @@ export function validateKeynote(data) {
   };
   const errors=[];
   if (!KEYNOTES[f.keynote]) errors.push('keynote');
+  if (!['In-person keynote','Virtual Keynote'].includes(f.keynote_format)) errors.push('keynote_format');
   for (const k of ['company','name','phone','event_name','event_venue','event_city','event_country']) if (f[k].length < 2) errors.push(k);
   if (!validEmail(f.email)) errors.push('email');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(f.event_date) || Number.isNaN(Date.parse(f.event_date))) errors.push('event_date');
@@ -133,7 +135,7 @@ export function validateKeynote(data) {
 }
 export function buildKeynoteEmail(f) {
   const rows=[
-    ['Keynote',KEYNOTES[f.keynote]],['Contact name',f.name],['Company',f.company],['Role',f.role],
+    ['Keynote',KEYNOTES[f.keynote]],['Keynote format',f.keynote_format],['Contact name',f.name],['Company',f.company],['Role',f.role],
     ['Email',f.email],['Telephone',f.phone],['Event name',f.event_name],['Event date',f.event_date],
     ['Event venue',f.event_venue],['Event city',f.event_city],['Event country',f.event_country],
     ['Number of delegates',String(f.delegates)],['Types of delegates',f.delegate_types.join(', ')],
