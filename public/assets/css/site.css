@@ -680,3 +680,8 @@ p { margin: 0 0 1em; }
 .cx-challenge-consequence p{max-width:920px}
 .cx-challenge-emphasis{font-family:"Montserrat",sans-serif;font-size:clamp(1.05rem,2vw,1.3rem);font-weight:600;color:var(--navy);margin-bottom:0}
 @media(max-width:640px){.cx-challenge-grid{grid-template-columns:1fr;gap:14px;margin:26px 0}.cx-challenge-card{padding:22px}.cx-challenge-consequence{padding:22px}}
+
+/* Problem-led keynote introductions */
+.kn-card .kn-problem{font-size:.94rem;line-height:1.6;color:var(--navy);font-weight:500;margin:12px 0 16px}
+.kn-hero .kn-problem-intro{max-width:760px;line-height:1.65;font-size:1rem;color:inherit;margin:15px 0}
+.bp-hero .kn-problem-intro{font-size:1rem;line-height:1.65;color:#e5f3f7;max-width:660px;margin:15px 0}
