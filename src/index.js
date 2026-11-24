@@ -94,11 +94,61 @@ export function buildEmail(f) {
   return { subject, text, html };
 }
 
+
+// Dedicated keynote enquiry validation and two-recipient email delivery.
+const KEYNOTES = {
+  'welcome-to-the-age-of-experience': 'Welcome to the Age of Experience',
+  'customer-experience-blueprint': 'Customer Experience Blueprinting',
+  'b2b-customer-experience-cpx': 'B2B Proof of Value',
+  'ai-and-humanization-cx': 'Welcome to the World of Humanization',
+  'customer-journey-game': 'CX Keynote + The Customer Journey Simulation Game'
+};
+const AUDIENCES = ['Board Level','Executives & Senior Leaders','Management','Supervisors','Sales','Frontline Staff','A Combination of All'];
+export function validateKeynote(data) {
+  const f = {
+    keynote: clean(data.keynote, 80),
+    company: oneLine(clean(data.company, 150)),
+    name: oneLine(clean(data.name, 100)),
+    role: oneLine(clean(data.role, 100)),
+    email: clean(data.email, 254),
+    phone: oneLine(clean(data.phone, 40)),
+    event_name: oneLine(clean(data.event_name, 160)),
+    event_date: clean(data.event_date, 10),
+    event_venue: oneLine(clean(data.event_venue, 160)),
+    event_city: oneLine(clean(data.event_city, 100)),
+    event_country: oneLine(clean(data.event_country, 100)),
+    delegates: Number(data.delegates),
+    delegate_types: Array.isArray(data.delegate_types) ? [...new Set(data.delegate_types.filter(x => typeof x === 'string' && AUDIENCES.includes(x)))] : [],
+    message: clean(data.message, 4000)
+  };
+  const errors=[];
+  if (!KEYNOTES[f.keynote]) errors.push('keynote');
+  for (const k of ['company','name','phone','event_name','event_venue','event_city','event_country']) if (f[k].length < 2) errors.push(k);
+  if (!validEmail(f.email)) errors.push('email');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(f.event_date) || Number.isNaN(Date.parse(f.event_date))) errors.push('event_date');
+  if (!Number.isInteger(f.delegates) || f.delegates < 1 || f.delegates > 100000) errors.push('delegates');
+  if (!f.delegate_types.length) errors.push('delegate_types');
+  if (f.message.length < 10) errors.push('message');
+  return {fields:f,errors};
+}
+export function buildKeynoteEmail(f) {
+  const rows=[
+    ['Keynote',KEYNOTES[f.keynote]],['Contact name',f.name],['Company',f.company],['Role',f.role],
+    ['Email',f.email],['Telephone',f.phone],['Event name',f.event_name],['Event date',f.event_date],
+    ['Event venue',f.event_venue],['Event city',f.event_city],['Event country',f.event_country],
+    ['Number of delegates',String(f.delegates)],['Types of delegates',f.delegate_types.join(', ')],
+    ['Tell us more about your event',f.message]
+  ];
+  const text=rows.map(([k,v])=>k+': '+v).join('\n\n');
+  const html='<div style="font-family:Arial,sans-serif;max-width:680px;color:#002d57"><h1 style="background:#002d57;color:white;padding:20px">Customer Experience Keynote Enquiry</h1>'+rows.map(([k,v])=>'<p style="border-bottom:1px solid #dce6ea;padding:9px"><strong>'+esc(k)+':</strong> '+esc(v).replace(/\n/g,'<br>')+'</p>').join('')+'</div>';
+  return {subject:'Customer Experience Keynote Enquiry',text,html};
+}
+
 export function createHandler(send = fetch) {
   return {
     async fetch(request, env) {
       const url = new URL(request.url);
-      if (url.pathname !== '/api/enquiry') {
+      if (url.pathname !== '/api/enquiry' && url.pathname !== '/api/keynote-enquiry') {
         return env.ASSETS ? env.ASSETS.fetch(request) : new Response('Not found', { status: 404 });
       }
       if (request.method !== 'POST') return json({ ok: false, error: 'method' }, 405);
@@ -129,6 +179,25 @@ export function createHandler(send = fetch) {
       // Bots get a normal-looking success so they don't adapt.
       if (clean(data.website, 200)) return json({ ok: true });
       if (typeof data.elapsed === 'number' && data.elapsed < MIN_FILL_MS) return json({ ok: true });
+
+      if (url.pathname === '/api/keynote-enquiry') {
+        const {fields,errors}=validateKeynote(data);
+        if (errors.length) return json({ok:false,error:'invalid',fields:errors},400);
+        if (!env.RESEND_API_KEY || !validEmail(env.FROM_EMAIL) || !validEmail(env.TO_EMAIL)) return json({ok:false,error:'not_configured'},503);
+        const {subject,text,html}=buildKeynoteEmail(fields);
+        try {
+          // Resend supports sending the same message to the organiser and CXISA.
+          // Both recipients must be accepted before the page shows success.
+          const res=await send('https://api.resend.com/emails',{
+            method:'POST',
+            headers:{Authorization:`Bearer ${env.RESEND_API_KEY}`,'Content-Type':'application/json'},
+            body:JSON.stringify({from:`CX Institute SA <${env.FROM_EMAIL}>`,to:[env.TO_EMAIL,fields.email],reply_to:fields.email,subject,text,html}),
+            signal:AbortSignal.timeout(15000)
+          });
+          if (!res.ok) return json({ok:false,error:'send'},502);
+          return json({ok:true});
+        } catch { return json({ok:false,error:'send'},502); }
+      }
 
       const { fields, errors } = validate(data);
       if (errors.length) return json({ ok: false, error: 'invalid', fields: errors }, 400);
