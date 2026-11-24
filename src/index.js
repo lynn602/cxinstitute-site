@@ -77,7 +77,7 @@ export function buildEmail(f) {
     `<!doctype html><html lang="en"><body style="margin:0;background:#f4f7fa;font-family:Arial,sans-serif;color:#1d2a3a">` +
     `<table role="presentation" style="width:100%;border-collapse:collapse"><tr><td style="padding:24px 12px">` +
     `<table role="presentation" style="width:100%;max-width:600px;margin:auto;background:#fff;border-collapse:collapse">` +
-    `<tr><td style="background:#173C68;color:#fff;padding:20px 24px;border-bottom:4px solid #3EA69D">` +
+    `<tr><td style="background:#002D57;color:#fff;padding:20px 24px;border-bottom:4px solid #0A8FB0">` +
     `<div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#6cc3bb">New website enquiry</div>` +
     `<div style="font-size:20px;font-weight:bold;margin-top:6px">${esc(label)}</div></td></tr>` +
     `<tr><td style="padding:20px 24px"><table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px">` +
@@ -85,10 +85,10 @@ export function buildEmail(f) {
       .map(
         ([k, v]) =>
           `<tr><td style="padding:7px 0;color:#5b6878;width:150px;vertical-align:top">${esc(k)}</td>` +
-          `<td style="padding:7px 0;font-weight:bold;color:#173C68">${esc(v)}</td></tr>`
+          `<td style="padding:7px 0;font-weight:bold;color:#002D57">${esc(v)}</td></tr>`
       )
       .join('') +
-    `</table><div style="margin-top:18px;padding:16px;background:#e8f4f3;border-left:4px solid #3EA69D;white-space:pre-wrap;line-height:1.55;font-size:14px">${esc(f.message)}</div>` +
+    `</table><div style="margin-top:18px;padding:16px;background:#e8f4f3;border-left:4px solid #0A8FB0;white-space:pre-wrap;line-height:1.55;font-size:14px">${esc(f.message)}</div>` +
     `<p style="font-size:13px;color:#5b6878;margin-top:18px">Reply to this email to answer ${esc(f.name)} directly.</p></td></tr>` +
     `</table></td></tr></table></body></html>`;
   return { subject, text, html };
@@ -165,6 +165,16 @@ export function buildBookingEmail(f){
  return {subject:'Keynote Booking Confirmation – '+oneLine(f.event_name),text:'Keynote Booking Confirmation\n\n'+base.text+'\n\n'+rows.map(([k,v])=>k+': '+v).join('\n'),html:'<!doctype html><html lang="en"><body style="margin:0;background:#f2f6f8;font-family:Inter,Arial,sans-serif"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td style="padding:24px 12px"><table role="presentation" width="100%" style="max-width:680px;margin:auto;background:white;border-collapse:collapse;color:#002D57"><tr><td style="background:#002D57;border-bottom:5px solid #0A8FB0;padding:28px;color:white"><img src="https://cxinstitute-site.lynn-1fa.workers.dev/assets/img/cxisa-logo-white.png" alt="CX Institute SA" width="127" style="display:block;margin-bottom:20px"><h1 style="font-family:Montserrat,Arial,sans-serif;font-size:25px;color:white;margin:0">Keynote Booking Confirmation</h1><p style="color:#48B3C5;margin-bottom:0">Lynn Baker · Customer Experience Keynotes</p></td></tr><tr><td style="padding:24px"><p>Dear '+esc(f.name)+',</p><p>Thank you for confirming your keynote booking. Please retain this summary of your submitted event and technical arrangements for your records.</p>'+base.html.replace(/<h1[^>]*>.*?<\/h1>/,'')+'<h2 style="color:#007F98;font-size:19px;border-bottom:2px solid #0A8FB0;padding-bottom:8px">On-site and technical arrangements</h2>'+rows.map(([k,v])=>'<p style="border-bottom:1px solid #dce6ea;padding:9px;overflow-wrap:anywhere"><strong>'+esc(k)+':</strong> '+esc(v).replace(/\n/g,'<br>')+'</p>').join('')+'<p>Please contact <a href="mailto:lynn@cx-company.com">lynn@cx-company.com</a> if any arrangements change.</p><p>Kind regards,<br><strong>Lynn Baker</strong><br>CX Institute SA</p></td></tr><tr><td style="background:#002D57;color:white;padding:20px;text-align:center;border-top:4px solid #0A8FB0">CX Institute SA · <a style="color:#fff" href="https://www.cxinstitute.co.za">www.cxinstitute.co.za</a></td></tr></table></td></tr></table></body></html>'};
 }
 
+const EMAIL_BASE='https://cxinstitute-site.lynn-1fa.workers.dev';
+const EMAIL_CONTACT='<div style="padding:20px 0;border-top:2px solid #0A8FB0;margin-top:24px;color:#002D57"><strong>Lynn Baker</strong><br>CEO · Customer Experience Institute SA<br>CX University USA – South Africa<br><a href="mailto:lynn@cx-company.com">lynn@cx-company.com</a> · <a href="mailto:lynn@cxisa.co.za">lynn@cxisa.co.za</a><br><a href="tel:+27824575752">+27 82 457 5752</a><br><a href="https://www.cxinstitute.co.za">www.cxinstitute.co.za</a></div>';
+const EMAIL_LOGO='<div style="background:#fff;padding:18px 24px;border-bottom:4px solid #0A8FB0"><img src="'+EMAIL_BASE+'/assets/email/cxisa-logo-2026.png" width="200" alt="CX Institute SA" style="display:block;max-width:100%;height:auto"></div>';
+const PRESS_KIT=EMAIL_BASE+'/lynnbakerspeaker/organiser-press-kit/';
+function brandEmail(html,booking=false){
+ const kit=booking?'<div style="background:#f2f6f8;padding:20px;border-left:4px solid #0A8FB0;margin-top:20px"><h2 style="font-size:19px;color:#002D57">Lynn Baker – Event Organiser Press Kit</h2><p>Access my biography, speaker introduction and photographs for your event communications.</p><a style="display:inline-block;background:#007F98;color:white;padding:12px 18px;text-decoration:none" href="'+PRESS_KIT+'">Access the Event Organiser Press Kit</a></div>':'';
+ const content=html.replace(/<!doctype html>.*?<body[^>]*>/i,'').replace(/<\/body><\/html>$/i,'').replace(/<img src="https:\/\/cxinstitute-site\.lynn-1fa\.workers\.dev\/assets\/img\/cxisa-logo-white\.png"[^>]*>/,'').replace('<p>Kind regards,<br><strong>Lynn Baker</strong><br>CX Institute SA</p>','');
+ return '<!doctype html><html lang="en"><body style="margin:0;background:#f2f6f8;font-family:Inter,Arial,sans-serif;color:#002D57"><table role="presentation" width="100%"><tr><td><table role="presentation" width="100%" style="max-width:680px;margin:auto;background:white"><tr><td>'+EMAIL_LOGO+content+'</td></tr><tr><td style="padding:0 24px 24px">'+kit+EMAIL_CONTACT+'</td></tr></table></td></tr></table></body></html>';
+}
+
 export function createHandler(send = fetch) {
   return {
     async fetch(request, env) {
@@ -213,7 +223,7 @@ export function createHandler(send = fetch) {
           const res=await send('https://api.resend.com/emails',{
             method:'POST',
             headers:{Authorization:`Bearer ${env.RESEND_API_KEY}`,'Content-Type':'application/json'},
-            body:JSON.stringify({from:`CX Institute SA <${env.FROM_EMAIL}>`,to:booking?[...new Set([fields.email,'lynn@cx-company.com'])]:[env.TO_EMAIL,fields.email],reply_to:booking?'lynn@cx-company.com':fields.email,subject,text,html}),
+            body:JSON.stringify({from:`CX Institute SA <${env.FROM_EMAIL}>`,to:booking?[...new Set([fields.email,'lynn@cx-company.com'])]:[env.TO_EMAIL,fields.email],reply_to:booking?'lynn@cx-company.com':fields.email,subject,text:text+(booking?'\n\nEvent Organiser Press Kit: '+PRESS_KIT:'')+'\n\nLynn Baker | +27 82 457 5752 | lynn@cx-company.com | www.cxinstitute.co.za',html:brandEmail(html,booking)}),
             signal:AbortSignal.timeout(15000)
           });
           if (!res.ok) return json({ok:false,error:'send'},502);
@@ -242,7 +252,7 @@ export function createHandler(send = fetch) {
             reply_to: fields.email,
             subject,
             text,
-            html
+            html: brandEmail(html)
           }),
           signal: AbortSignal.timeout(15000)
         });
