@@ -14,6 +14,30 @@
     .press-photo-grid figure { margin: 0; }
     .press-photo-grid img { width: 100%; height: 280px; object-fit: contain; background: #111; border-radius: 10px; }
     .press-photo-grid figcaption { margin-block: 10px; font-weight: 600; }
+  
+    .pk-hero{background:#002D57;color:white;padding:36px 0;border-bottom:4px solid #0A8FB0}
+    .pk-hero h1{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15;color:white;margin:8px 0 12px}
+    .pk-hero .eyebrow{color:#9ee2ec;font-size:.78rem;letter-spacing:.12em}
+    .pk-hero .lead{color:#e1edf3;font-size:1rem;max-width:720px;margin:0}
+    .pk-section-title,.pk-photos h2{font-size:1.35rem!important;color:#002D57;margin:0 0 20px}
+    .pk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+    .pk-resource{background:white;border:1px solid #dbe5eb;border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+    .pk-icon{display:grid;place-items:center;background:#002D57;color:white;width:42px;height:42px;border-radius:7px}
+    .pk-body h2{font-size:1.13rem;line-height:1.35;color:#002D57;margin:0 0 10px}
+    .pk-body p,.pk-photos p{font-size:.94rem;line-height:1.55;margin:0 0 16px;color:#405369}
+    .pk-body .kn-links{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+    .pk-grid .btn{font-size:.73rem;letter-spacing:0;text-transform:none;min-height:38px;padding:9px 13px;border-radius:5px;white-space:normal}
+    .pk-body details{margin-top:14px;border-top:1px solid #e2e9ed;padding-top:10px;font-size:.85rem}
+    .pk-body summary{color:#007F98;cursor:pointer;font-weight:600}
+    .pk-body details p{margin:12px 0;font-size:.86rem}
+    .pk-photos{grid-column:1/-1;border-top:1px solid #dbe5eb;padding-top:26px;margin-top:12px}
+    .pk-photos .kn-card-body{padding:0}
+    .press-photo-grid{gap:16px}
+    .press-photo-grid figure{border:1px solid #dbe5eb;border-radius:8px;padding:12px;background:white}
+    .press-photo-grid img{height:230px;border-radius:4px}
+    .press-photo-grid figcaption{font-size:.9rem;color:#002D57}
+    @media(max-width:960px){.pk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:620px){.pk-grid{grid-template-columns:1fr}.pk-hero{padding:26px 0}.pk-resource{padding:16px;flex-direction:row}.pk-icon{flex-shrink:0}.pk-body{min-width:0}.press-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.press-photo-grid img{height:170px}}
   </style>
 <link rel="canonical" href="https://cxinstitute-site.lynn-1fa.workers.dev/lynnbakerspeaker/organiser-press-kit/">
 <meta property="og:type" content="website">
@@ -33,52 +57,37 @@
   </div>
 </header>
 <main>
-  <section class="kn-hero" aria-labelledby="press-kit-title">
-    <div class="wrap kn-hero-text">
+  <section class="pk-hero" aria-labelledby="press-kit-title">
+    <div class="wrap">
       <p class="eyebrow">Lynn Baker Speaker</p>
       <h1 id="press-kit-title">Event Organiser Press Kit</h1>
       <p class="lead">Download Lynn’s introduction for your MC, a bio for your event materials and a professional headshot.</p>
     </div>
   </section>
   <section class="wrap section" aria-label="Press kit resources">
-    <div class="kn-grid">
-      <article class="kn-card">
-        <div class="kn-card-body">
-          <p class="k-kicker">Read aloud on stage</p>
-          <h2>Lynn Baker Speaker Introduction for MC’s</h2>
-          <p>Our next speaker helps leaders turn customer experience into a strategy for customer retention and growth. Lynn Baker is the founder and CEO of CX Institute South Africa, the creator of The Customer Journey Game and a former Chair of Judges for the International Customer Experience Awards. A Disney Institute-trained keynote speaker, she brings customer experience to life with storytelling, humour and audience participation. Please welcome Lynn Baker.</p>
-          <div class="kn-links">
+    <h2 class="pk-section-title">Speaker resources</h2><div class="pk-grid">
+      <article class="pk-resource"><div class="pk-icon"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h8l4 4v14H6z M14 3v5h4 M9 12h6 M9 16h6"/></svg></div><div class="pk-body"><h2>Lynn Baker Speaker Introduction for MC’s</h2><p>A ready-to-read introduction for your MC to welcome Lynn onto the stage.</p><div class="kn-links">
             <a class="btn btn-navy" href="Lynn-Baker-Speaker-Introduction.pdf" download>Download Speaker Introduction (PDF)</a>
             <a class="btn btn-outline" href="lynn-baker-mc-introduction.txt" download aria-label="Download Lynn Baker Speaker Introduction for MC’s">Download text</a>
-          </div>
-        </div>
-      </article>
-      <article class="kn-card">
-        <div class="kn-card-body">
-          <p class="k-kicker">For event websites, media and speaker listings</p>
-          <h2>Lynn Baker Full Bio</h2>
+          </div><details><summary>Preview text</summary>
+          <p>Our next speaker helps leaders turn customer experience into a strategy for customer retention and growth. Lynn Baker is the founder and CEO of CX Institute South Africa, the creator of The Customer Journey Game and a former Chair of Judges for the International Customer Experience Awards. A Disney Institute-trained keynote speaker, she brings customer experience to life with storytelling, humour and audience participation. Please welcome Lynn Baker.</p>
+          </details></div></article>
+      <article class="pk-resource"><div class="pk-icon"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h8l4 4v14H6z M14 3v5h4 M9 12h6 M9 16h6"/></svg></div><div class="pk-body"><h2>Lynn Baker Full Bio</h2><p>A detailed professional biography for event websites, media and speaker listings.</p><div class="kn-links">
+            <a class="btn btn-navy" href="Lynn-Baker-Professional-Bio-CXISA.pdf" download>Download Full Bio (PDF)</a>
+            <a class="btn btn-outline" href="lynn-baker-full-bio.txt" download aria-label="Download Lynn Baker Full Bio as text">Download text</a>
+          </div><details><summary>Preview text</summary>
           <p>Lynn Baker is a customer experience strategist and international keynote speaker based in Johannesburg, South Africa. Over more than 25 years, she has helped organisations connect the way they serve customers to the results they want to achieve, from customer retention and loyalty to long-term growth.</p>
           <p>She is the founder and CEO of the Customer Experience Institute South Africa (CX Institute SA), the South African partner of CX University. She trained at the Disney Institute, served for six years as Chair of Judges for the International Customer Experience Awards and was named among the Top 50 Women in CX. She created The Customer Journey Game, an interactive business simulation, and developed the Client Partner Experience (CPX) framework for B2B organisations.</p>
           <p>Lynn speaks across South Africa, the Middle East, Europe and the UK. Her keynotes draw on storytelling, humour, business examples and live audience participation to help teams apply customer experience thinking to strategy, sales, leadership and change.</p>
-          <div class="kn-links">
-            <a class="btn btn-navy" href="Lynn-Baker-Professional-Bio-CXISA.pdf" download>Download Full Bio (PDF)</a>
-            <a class="btn btn-outline" href="lynn-baker-full-bio.txt" download aria-label="Download Lynn Baker Full Bio as text">Download text</a>
-          </div>
-        </div>
-      </article>
-      <article class="kn-card">
-        <div class="kn-card-body">
-          <p class="k-kicker">For conference programmes and event apps</p>
-          <h2>Lynn Baker Conference Programme Bio</h2>
-          <p>Lynn Baker is a customer experience strategist, international keynote speaker and founder of CX Institute South Africa. Disney Institute-trained and a former Chair of Judges for the International Customer Experience Awards, she created The Customer Journey Game and the Client Partner Experience (CPX) framework. Her keynotes help organisations turn customer experience strategy into customer retention and growth.</p>
-          <div class="kn-links">
+          </details></div></article>
+      <article class="pk-resource"><div class="pk-icon"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h8l4 4v14H6z M14 3v5h4 M9 12h6 M9 16h6"/></svg></div><div class="pk-body"><h2>Lynn Baker Conference Programme Bio</h2><p>A short biography for conference programmes and event apps.</p><div class="kn-links">
             <a class="btn btn-navy" href="lynn-baker-programme-bio.txt" download aria-label="Download Lynn Baker Programme Bio">Download text</a>
-          </div>
-        </div>
-      </article>
-      <article class="kn-card press-photos">
+          </div><details><summary>Preview text</summary>
+          <p>Lynn Baker is a customer experience strategist, international keynote speaker and founder of CX Institute South Africa. Disney Institute-trained and a former Chair of Judges for the International Customer Experience Awards, she created The Customer Journey Game and the Client Partner Experience (CPX) framework. Her keynotes help organisations turn customer experience strategy into customer retention and growth.</p>
+          </details></div></article>
+      <article class="pk-photos">
         <div class="kn-card-body">
-          <h2>Lynn Baker Prof Pics</h2>
+          <h2>Professional photographs</h2>
           <p>Choose a professional portrait for your event programme, speaker slides or promotion.</p>
           <div class="press-photo-grid">
             <figure>
