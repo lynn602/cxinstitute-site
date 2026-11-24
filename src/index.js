@@ -7,7 +7,7 @@
 //   FROM_EMAIL      (secret)  – a sender address on a domain verified in Resend
 // TO_EMAIL is set in wrangler.jsonc.
 
-const MAX_BODY = 8192;
+const MAX_BODY = 16384;
 const MIN_FILL_MS = 3000;
 
 export const INTERESTS = {
@@ -146,11 +146,30 @@ export function buildKeynoteEmail(f) {
   return {subject:'Customer Experience Keynote Enquiry',text,html};
 }
 
+
+const BOOKING_ROOMS=['Standard Conference Room','Auditorium','Boardroom','Training Room','Not applicable – virtual event'];
+const BOOKING_TECH=['Wifi access','Smart Screen','Data Projector + Screen','Audio + Speakers','Lapel Microphone','Handheld Microphone','Technician on site'];
+export function validateBooking(data){
+ const {fields:f,errors}=validateKeynote(data);
+ for(const [k,max] of Object.entries({onsite_contact:100,onsite_mobile:40,room_type:80,event_timezone:80,setup_from:5,setup_to:5,presentation_from:5,presentation_to:5,technical_notes:1000})) f[k]=clean(data[k],max);
+ for(const k of ['onsite_contact','onsite_mobile','event_timezone']) if(f[k].length<2) errors.push(k);
+ if(!BOOKING_ROOMS.includes(f.room_type)) errors.push('room_type');
+ f.technical=Array.isArray(data.technical)?[...new Set(data.technical.filter(x=>BOOKING_TECH.includes(x)))]:[];
+ for(const k of ['setup_from','setup_to','presentation_from','presentation_to']) if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(f[k])) errors.push(k);
+ if(f.setup_from>=f.setup_to||f.presentation_from>=f.presentation_to||f.setup_to>f.presentation_from) errors.push('time_ranges');
+ return {fields:f,errors};
+}
+export function buildBookingEmail(f){
+ const base=buildKeynoteEmail(f);
+ const rows=[['On-site conference contact',f.onsite_contact],['On-site mobile',f.onsite_mobile],['Room type',f.room_type],['Time zone',f.event_timezone],['Technical equipment available',f.technical.join(', ')||'None selected'],['Set-up and technical dry run',f.setup_from+' – '+f.setup_to],['Presentation time',f.presentation_from+' – '+f.presentation_to],['Technical notes',f.technical_notes]];
+ return {subject:'Keynote Booking Confirmation – '+oneLine(f.event_name),text:'Keynote Booking Confirmation\n\n'+base.text+'\n\n'+rows.map(([k,v])=>k+': '+v).join('\n'),html:base.html.replace('Customer Experience Keynote Enquiry','Keynote Booking Confirmation').replace(/<\/div>$/,rows.map(([k,v])=>'<p><strong>'+esc(k)+':</strong> '+esc(v)+'</p>').join('')+'</div>')};
+}
+
 export function createHandler(send = fetch) {
   return {
     async fetch(request, env) {
       const url = new URL(request.url);
-      if (url.pathname !== '/api/enquiry' && url.pathname !== '/api/keynote-enquiry') {
+      if (url.pathname !== '/api/enquiry' && url.pathname !== '/api/keynote-enquiry' && url.pathname !== '/api/keynote-booking') {
         return env.ASSETS ? env.ASSETS.fetch(request) : new Response('Not found', { status: 404 });
       }
       if (request.method !== 'POST') return json({ ok: false, error: 'method' }, 405);
@@ -182,11 +201,12 @@ export function createHandler(send = fetch) {
       if (clean(data.website, 200)) return json({ ok: true });
       if (typeof data.elapsed === 'number' && data.elapsed < MIN_FILL_MS) return json({ ok: true });
 
-      if (url.pathname === '/api/keynote-enquiry') {
-        const {fields,errors}=validateKeynote(data);
+      if (url.pathname === '/api/keynote-enquiry' || url.pathname === '/api/keynote-booking') {
+        const booking=url.pathname === '/api/keynote-booking';
+        const {fields,errors}=booking?validateBooking(data):validateKeynote(data);
         if (errors.length) return json({ok:false,error:'invalid',fields:errors},400);
         if (!env.RESEND_API_KEY || !validEmail(env.FROM_EMAIL) || !validEmail(env.TO_EMAIL)) return json({ok:false,error:'not_configured'},503);
-        const {subject,text,html}=buildKeynoteEmail(fields);
+        const {subject,text,html}=booking?buildBookingEmail(fields):buildKeynoteEmail(fields);
         try {
           // Resend supports sending the same message to the organiser and CXISA.
           // Both recipients must be accepted before the page shows success.
